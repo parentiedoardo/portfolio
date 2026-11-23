@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="it" data-style="bento">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Edoardo Parenti</title>
+<meta name="description" content="Edoardo Parenti: progetto, costruisco e lancio prodotti digitali. TweakBlock, EnoList, Firmadocumenti e altri progetti.">
+<meta property="og:title" content="Edoardo Parenti · Portfolio">
+<meta property="og:description" content="Prodotti digitali progettati, sviluppati e lanciati in autonomia.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="foto-edoardo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=Sora:wght@300;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: una colonna editoriale stretta; i progetti come "scaffale" di schede prodotto, ognuna con dominio e cosa fa. */
+:root {
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --ink: #141821;
+  --muted: #5a6273;
+  --line: #e1e4ea;
+  --accent: #2f56d9;
+  --accent-soft: #e6ecfd;
+  --todo-bg: #fff4d6;
+  --todo-line: #d99a00;
+  --todo-ink: #6b4a00;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1117; --surface: #161a22; --ink: #e8ebf1; --muted: #9aa3b4; --line: #262c38;
+    --accent: #8aa4ff; --accent-soft: #1c2540;
+    --todo-bg: #3a2e0c; --todo-line: #c9930f; --todo-ink: #ffd98a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1117; --surface: #161a22; --ink: #e8ebf1; --muted: #9aa3b4; --line: #262c38;
+  --accent: #8aa4ff; --accent-soft: #1c2540;
+  --todo-bg: #3a2e0c; --todo-line: #c9930f; --todo-ink: #ffd98a;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--f-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; }
+
+.wrap { max-width: 880px; margin: 0 auto; }
+
+/* Avviso bozza: eliminare prima della pubblicazione */
+.draft-note {
+  margin-top: 16px;
+  font-size: .9rem; color: var(--todo-ink); background: var(--todo-bg);
+  border: 1px dashed var(--todo-line); border-radius: 10px; padding: 10px 14px;
+}
+.todo {
+  background: var(--todo-bg); color: var(--todo-ink);
+  outline: 1px dashed var(--todo-line); outline-offset: 2px; border-radius: 4px;
+  padding: 0 .25em;
+}
+
+/* Testata */
+header.top {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+  padding-block: 28px 0;
+  font-family: var(--f-mono); font-size: .8rem; color: var(--muted);
+}
+header.top nav { display: flex; gap: 18px; flex-wrap: wrap; }
+header.top a { color: var(--muted); text-decoration: none; }
+header.top a:hover { color: var(--ink); }
+
+.hero { padding-block: 72px 56px; display: grid; grid-template-columns: minmax(0, 1fr) 15rem; gap: 40px; align-items: center; }
+.hero-text { display: grid; gap: 22px; min-width: 0; }
+.portrait {
+  width: 100%; height: auto; max-width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 40% 30%;
+  border-radius: 18px; border: 1px solid var(--line); background: var(--surface);
+}
+.eyebrow { font-family: var(--f-mono); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.hero h1 {
+  font-size: clamp(2.6rem, 7vw, 4.6rem); line-height: 1; font-weight: 800; letter-spacing: -.035em;
+}
+.hero h1 span { color: var(--muted); font-weight: 500; }
+.hero p.lead { font-size: 1.25rem; line-height: 1.5; max-width: 34em; margin: 0; color: var(--ink); }
+.hero .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font: 600 .95rem var(--f-body); text-decoration: none;
+  padding: 11px 18px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink); background: var(--surface);
+}
+.btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.btn:hover { border-color: var(--ink); }
+
+.facts { display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 8px 0 0; padding: 0; list-style: none; font-size: .95rem; color: var(--muted); }
+.facts b { color: var(--ink); font-family: var(--f-display); font-size: 1.35rem; font-weight: 700; margin-right: 6px; font-variant-numeric: tabular-nums; }
+
+section { padding-block: 56px; border-top: 1px solid var(--line); }
+.sec-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+.sec-head h2 { font-size: clamp(1.7rem, 4vw, 2.2rem); font-weight: 700; letter-spacing: -.02em; }
+.sec-head p { margin: 0; color: var(--muted); font-size: .95rem; max-width: 30em; }
+
+/* Progetti */
+.projects { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.project {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  padding: 22px; display: grid; gap: 12px; align-content: start; min-width: 0;
+}
+.project.featured { grid-column: 1 / -1; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); column-gap: 32px; }
+.project.featured .p-body { display: grid; gap: 12px; align-content: start; }
+.p-top { display: flex; align-items: center; gap: 12px; }
+.mark {
+  width: 40px; height: 40px; border-radius: 10px; flex: none;
+  display: grid; place-items: center; color: #fff;
+  font: 700 1.05rem var(--f-display);
+}
+.p-top h3 { font-size: 1.35rem; font-weight: 700; letter-spacing: -.01em; }
+.domain { font-family: var(--f-mono); font-size: .8rem; color: var(--muted); text-decoration: none; display: block; }
+.domain:hover { color: var(--accent); }
+.project p { margin: 0; color: var(--ink); }
+.feat { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: .95rem; color: var(--muted); }
+.feat li { padding-left: 16px; position: relative; }
+.feat li::before { content: ""; position: absolute; left: 0; top: .7em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.chip {
+  font-family: var(--f-mono); font-size: .75rem; padding: 4px 9px; border-radius: 6px;
+  background: var(--accent-soft); color: var(--accent);
+}
+.chip.plain { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+.featured .side {
+  border-left: 1px solid var(--line); padding-left: 28px; display: grid; gap: 10px; align-content: start;
+}
+.side h4 { margin: 0; font: 500 .75rem var(--f-mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.price { display: flex; justify-content: space-between; gap: 12px; font-size: .95rem; padding-block: 6px; border-bottom: 1px dashed var(--line); }
+.price span:last-child { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+
+/* Competenze */
+.skills { display: grid; gap: 28px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.skills h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+.skills p { margin: 0 0 10px; color: var(--muted); font-size: .95rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* Esperienza */
+.timeline { display: grid; gap: 0; }
+.role { display: grid; grid-template-columns: 10.5rem minmax(0, 1fr); gap: 20px; padding-block: 18px; border-bottom: 1px solid var(--line); }
+.role:last-child { border-bottom: 0; }
+.role time { font-family: var(--f-mono); font-size: .85rem; color: var(--muted); padding-top: 3px; }
+.role h3 { font-size: 1.1rem; font-weight: 700; }
+.role .org { color: var(--muted); font-size: .95rem; }
+.role p { margin: 6px 0 0; }
+
+/* Contatti */
+.contact { display: grid; gap: 18px; }
+.contact h2 { font-size: clamp(1.9rem, 5vw, 2.8rem); font-weight: 800; letter-spacing: -.03em; max-width: 16em; }
+.links { display: flex; flex-wrap: wrap; gap: 12px; }
+footer { padding-block: 28px 40px; color: var(--muted); font-size: .85rem; font-family: var(--f-mono); border-top: 1px solid var(--line); }
+
+@media (max-width: 760px) {
+  .projects { grid-template-columns: minmax(0, 1fr); }
+  .project.featured { grid-template-columns: minmax(0, 1fr); }
+  .featured .side { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 16px; }
+  .skills { grid-template-columns: minmax(0, 1fr); }
+  .role { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .hero { padding-block: 40px 40px; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .portrait { order: -1; width: 8.5rem; aspect-ratio: 1; border-radius: 50%; object-position: 40% 35%; }
+}
+
+/* Formazione, lingue, altri progetti */
+.role .feat { margin-top: 8px; }
+.edu { display: grid; grid-template-columns: minmax(0, 1fr) 14rem; gap: 40px; align-items: start; }
+.langs { display: grid; gap: 4px; }
+.langs h4 { margin: 0 0 6px; font: 500 .75rem var(--f-mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.side-projects { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.side-projects h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
+.side-projects p { margin: 0; color: var(--muted); font-size: .95rem; }
+@media (max-width: 760px) {
+  .edu, .side-projects { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Caso di studio */
+.case { display: grid; grid-template-columns: minmax(0, 1fr) 16rem; gap: 40px; align-items: start; }
+.case-text { display: grid; gap: 22px; min-width: 0; }
+.case-text h4 { font-family: var(--f-display); font-size: 1.1rem; font-weight: 700; margin: 0 0 6px; }
+.case-block { display: grid; gap: 24px; padding-block: 8px 48px; }
+.case-block + .case-block { border-top: 1px dashed var(--line); padding-top: 40px; }
+.case-head { display: grid; gap: 6px; }
+.case-head h3 { font-size: clamp(1.5rem, 3.5vw, 1.9rem); font-weight: 700; letter-spacing: -.02em; }
+.case-head p { margin: 0; color: var(--muted); }
+.case-text p { margin: 0; }
+.case-side { display: grid; gap: 4px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+.case-side h4 { margin: 0 0 6px; font: 500 .75rem var(--f-mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 8px; }
+.shot { margin: 0; display: grid; gap: 8px; min-width: 0; }
+.shot.wide { grid-column: 1 / -1; }
+.shot img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); display: block; }
+.shot figcaption { font-size: .9rem; color: var(--muted); }
+.note { margin: 18px 0 0; font-size: .85rem; color: var(--muted); font-family: var(--f-mono); }
+@media (max-width: 760px) {
+  .case, .shots { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn, .domain, header.top a { transition: color .15s, border-color .15s; }
+}
+
+/* Titolo hero: nuovo abbinamento di font */
+.hero h1, .bento .name { font-family: "Sora", var(--f-display); font-weight: 700; letter-spacing: -.04em; }
+.hero h1 span, .bento .name span { display: inline-block; margin-top: .14em; font-family: "Sora", var(--f-display); font-style: normal; font-weight: 300; font-size: .62em; line-height: 1.15; letter-spacing: -.03em; color: var(--muted); }
+img.mark { border-radius: 10px; object-fit: contain; }
+
+/* Pulsante cambio stile */
+.style-toggle {
+  font: 600 .8rem var(--f-mono); letter-spacing: .02em; cursor: pointer;
+  padding: 7px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.style-toggle:hover { border-color: var(--ink); }
+.style-toggle:focus-visible, .bento .btn:focus-visible, .tile:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.style-toggle i { width: 14px; height: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.style-toggle i::before, .style-toggle i::after { content: ""; background: currentColor; border-radius: 2px; }
+.top-right { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+html[data-style="bento"] header.top nav { display: none; }
+html[data-style="bento"] .wrap { max-width: 1160px; }
+
+/* Bento */
+.bento { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-flow: dense; gap: 14px; padding-block: 36px 56px; }
+.tile {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 22px;
+  display: flex; flex-direction: column; gap: 10px; min-width: 0; color: var(--ink); text-decoration: none; margin: 0;
+}
+.tile h3 { font-size: 1.2rem; font-weight: 700; }
+.tile p { margin: 0; color: var(--muted); font-size: .95rem; }
+.t-wide { grid-column: span 2; }
+.t-full { grid-column: 1 / -1; }
+.b-label { grid-column: 1 / -1; font-size: .8rem; font-family: var(--f-mono); font-weight: 500; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 18px 0 -4px 4px; }
+.t-intro { grid-column: span 2; grid-row: span 2; justify-content: space-between; padding: 30px; gap: 18px; }
+.t-intro .name { font-size: clamp(2.3rem, 4.4vw, 3.4rem); line-height: 1; }
+.t-intro p { font-size: 1.05rem; color: var(--ink); max-width: 32em; }
+.t-intro .cta { display: flex; gap: 10px; flex-wrap: wrap; }
+.t-photo { grid-row: span 2; padding: 0; overflow: hidden; }
+.t-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 40% 30%; display: block; }
+.t-stat { justify-content: flex-end; }
+.t-stat b { font: 700 3rem/1 "Sora", var(--f-display); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.t-stat span { color: var(--muted); font-size: .95rem; }
+.t-accent { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.t-accent span { color: var(--bg); opacity: .75; }
+.t-proj { transition: transform .2s, border-color .2s; }
+.t-proj:hover { border-color: var(--ink); }
+.t-proj .mark { width: 48px; height: 48px; border-radius: 12px; }
+.t-proj .domain { margin-top: auto; }
+.t-case { padding: 0; overflow: hidden; gap: 0; }
+.t-case img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; display: block; border-bottom: 1px solid var(--line); }
+.t-case > div { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; flex: 1; }
+.t-case .btn { margin-top: auto; cursor: pointer; }
+.t-case { grid-row: span 2; }
+.t-case.t-wide img { aspect-ratio: 16 / 10; }
+.mini { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: .95rem; }
+.mini li { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 12px; }
+.mini time { font-family: var(--f-mono); font-size: .8rem; color: var(--muted); padding-top: 2px; }
+.mini.plain li { display: block; color: var(--muted); }
+.t-contact { background: var(--accent-soft); border-color: transparent; padding: 34px; gap: 18px; }
+.t-contact h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 800; letter-spacing: -.03em; max-width: 18em; }
+.t-contact .links { display: flex; gap: 10px; flex-wrap: wrap; }
+@media (prefers-reduced-motion: no-preference) { .t-proj:hover { transform: translateY(-2px); } }
+@media (max-width: 960px) {
+  .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .t-photo { grid-row: span 1; aspect-ratio: 1; }
+  .t-accent { grid-column: span 2; }
+}
+@media (max-width: 600px) {
+  .bento { grid-template-columns: minmax(0, 1fr); grid-auto-flow: row; }
+  .t-wide, .t-intro, .t-full, .t-accent { grid-column: auto; }
+  .t-case, .t-photo { grid-row: auto; }
+  .t-intro { grid-row: auto; padding: 24px; }
+  .t-photo { aspect-ratio: 4 / 3; }
+  .mini li { grid-template-columns: minmax(0, 1fr); gap: 0; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+
+  <header class="top">
+    <span>edoardo parenti</span>
+    <div class="top-right">
+    <nav aria-label="Sezioni">
+      <a href="#progetti">progetti</a>
+      <a href="#casi-studio">casi di studio</a>
+      <a href="#competenze">competenze</a>
+      <a href="#esperienza">esperienza</a>
+      <a href="#formazione">formazione</a>
+      <a href="#contatti">contatti</a>
+    </nav>
+    <button class="style-toggle" id="style-toggle" type="button" aria-pressed="true"><i aria-hidden="true"></i><span>Stile classico</span></button>
+    </div>
+  </header>
+
+  <main id="view-classic" hidden>
+  <div class="hero">
+   <div class="hero-text">
+    <span class="eyebrow">UI/UX · No-code · Digital marketing</span>
+    <h1>Edoardo Parenti<br><span>Prodotti digitali, dall'idea al primo cliente.</span></h1>
+    <p class="lead">Web designer e no-code developer a Milano. In azienda progetto interfacce, app interne e strategie di marketing digitale; in proprio sviluppo e lancio prodotti web come EnoList, Firmadocumenti e TweakBlock. Seguo tutto il ciclo, dal design ai dati, fino a pagamenti e automazioni.</p>
+    <ul class="facts" aria-label="In sintesi">
+      <li><b>10+</b>anni nel web</li>
+      <li><b>5</b>PWA no-code per processi aziendali</li>
+      <li><b>6</b>prodotti e progetti online</li>
+    </ul>
+    <div class="cta">
+      <a class="btn primary" href="#progetti">Guarda i progetti</a>
+      <a class="btn" href="https://www.linkedin.com/in/parenti-edoardo" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+   </div>
+   <img class="portrait" src="foto-edoardo.jpg" alt="Ritratto di Edoardo Parenti" width="640" height="640">
+  </div>
+
+  <section id="progetti" aria-labelledby="h-progetti">
+    <div class="sec-head">
+      <h2 id="h-progetti">Progetti</h2>
+      <p>Prodotti online e in uso, ognuno costruito e mantenuto da me.</p>
+    </div>
+
+    <div class="projects">
+
+      <article class="project featured">
+        <div class="p-body">
+          <div class="p-top">
+            <img class="mark" src="img/logos/enolist.svg" alt="" width="40" height="40">
+            <div>
+              <h3>EnoList</h3>
+              <a class="domain" href="https://enolist.com/" target="_blank" rel="noopener">enolist.com ↗</a>
+            </div>
+          </div>
+          <p>Menu digitale con QR code per bar, ristoranti ed enoteche. Il gestore aggiorna prezzi e disponibilità dal telefono e i clienti vedono subito le modifiche, senza ristampare nulla e senza installare app.</p>
+          <ul class="feat">
+            <li>Importazione del menu da foto o PDF</li>
+            <li>Un QR per tavolo, 10 stili di menu, filtro per i 14 allergeni UE</li>
+            <li>Traduzione automatica in 6 lingue, piatti del giorno e happy hour</li>
+            <li>Prenotazioni, turni del personale e statistiche sui QR</li>
+          </ul>
+          <div class="meta"><span class="chip">SaaS B2B</span><span class="chip">Ristorazione</span><span class="chip">Multilingua</span></div>
+        </div>
+        <div class="side">
+          <h4>Il mio ruolo</h4>
+          <p style="color:var(--muted);font-size:.95rem">Ideazione, design, sviluppo, pagamenti e lancio.</p>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="p-top">
+          <img class="mark" src="img/logos/firmadocumenti.svg" alt="" width="40" height="40">
+          <div>
+            <h3>Firmadocumenti</h3>
+            <a class="domain" href="https://firmadocumenti.app/" target="_blank" rel="noopener">firmadocumenti.app ↗</a>
+          </div>
+        </div>
+        <p>Firma di PDF direttamente nel browser: il documento viene elaborato in locale e non lascia mai il dispositivo. Pensato per privati e piccole imprese che firmano preventivi e contratti.</p>
+        <ul class="feat">
+          <li>Firma scritta, disegnata o caricata, più campi data e testo</li>
+          <li>Documenti multipagina, ottimizzato per il touch</li>
+          <li>Pagamenti online integrati con Stripe</li>
+        </ul>
+        <div class="meta"><span class="chip">Privacy by design</span><span class="chip">Stripe</span></div>
+      </article>
+
+      <article class="project">
+        <div class="p-top">
+          <img class="mark" src="img/logos/tweakblock.svg" alt="" width="40" height="40">
+          <div>
+            <h3>TweakBlock</h3>
+            <a class="domain" href="https://tweakblock.com/" target="_blank" rel="noopener">tweakblock.com ↗</a>
+          </div>
+        </div>
+        <p>Blocchi HTML pronti per la colonna Rich Text di Glide, il costruttore di app no-code. Si configura il blocco, si copia e si incolla nell'app.</p>
+        <ul class="feat">
+          <li>Libreria di componenti, editor visuale e validatore per Glide</li>
+          <li>"Da immagine a codice": da uno screenshot all'HTML con l'AI di Claude</li>
+          <li>Interfaccia in 6 lingue, guide Academy</li>
+        </ul>
+        <div class="meta"><span class="chip">No-code</span><span class="chip">AI</span></div>
+      </article>
+
+      <article class="project">
+        <div class="p-top">
+          <img class="mark" src="img/logos/toolhub.svg" alt="" width="40" height="40">
+          <div>
+            <h3>ToolHub</h3>
+            <a class="domain" href="https://parentiedoardo.github.io/toolhub/" target="_blank" rel="noopener">parentiedoardo.github.io/toolhub ↗</a>
+          </div>
+        </div>
+        <p>Launcher personale che raccoglie per categoria gli strumenti digitali che uso ogni giorno, con salvataggio nel browser e sincronizzazione sul repository.</p>
+        <div class="meta"><span class="chip">GitHub Pages</span><span class="chip plain">Uso personale</span></div>
+      </article>
+
+      <article class="project">
+        <div class="p-top">
+          <img class="mark" src="img/logos/splitview.svg" alt="" width="40" height="40">
+          <div>
+            <h3>SplitView</h3>
+            <a class="domain" href="https://parentiedoardo.github.io/splitview/" target="_blank" rel="noopener">parentiedoardo.github.io/splitview ↗</a>
+          </div>
+        </div>
+        <p>Genera uno script per Windows o macOS che apre finestre reali di Chrome disposte a griglia su uno o due monitor, con anteprima e preset esportabili.</p>
+        <div class="meta"><span class="chip">Produttività</span><span class="chip plain">Uso personale</span></div>
+      </article>
+
+      <article class="project">
+        <div class="p-top">
+          <img class="mark" src="img/logos/command-board.svg" alt="" width="40" height="40">
+          <div>
+            <h3>Command Board</h3>
+            <a class="domain" href="https://command-dashboard-one.vercel.app/" target="_blank" rel="noopener">command-dashboard-one.vercel.app ↗</a>
+          </div>
+        </div>
+        <p>Dashboard di comando per gestire in modo dinamico i progetti in corso.</p>
+        <div class="meta"><span class="chip">Vercel</span></div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="casi-studio" aria-labelledby="h-casi">
+    <div class="sec-head">
+      <h2 id="h-casi">Casi di studio</h2>
+      <p>Web app interne no-code che ho progettato e sviluppato in Glide per un'azienda industriale B2B con filiali in diversi paesi.</p>
+    </div>
+
+    <article class="case-block" id="analisi-concorrenza" aria-labelledby="h-c1">
+      <div class="case-head"><span class="eyebrow">Vendite</span><h3 id="h-c1">Analisi concorrenza</h3><p>I prezzi dei concorrenti in tasca alla forza vendita.</p></div>
+      <div class="case">
+        <div class="case-text">
+          <div><h4>Il problema</h4><p>Gli agenti dovevano capire in pochi secondi se il prezzo proposto da un concorrente era davvero più basso e quanto margine restava per rispondere. Listini e sconti dei concorrenti erano sparsi in file diversi, difficili da consultare dal cliente.</p></div>
+          <div><h4>La soluzione</h4>
+            <ul class="feat">
+              <li>Ricerca di un articolo anche partendo dal codice di un concorrente, con il confronto immediato tra listino, sconto e prezzo netto</li>
+              <li>Segnalazione di un prezzo visto sul campo, con calcolo automatico di scostamento, sconto effettivo e margine</li>
+              <li>Una dashboard per il marketing con le segnalazioni, i prodotti in sovrapprezzo, la copertura dei listini e gli avvisi di aggiornamento</li>
+            </ul></div>
+          <div><h4>Il mio ruolo</h4><p>Analisi dei bisogni con le vendite, progettazione UI/UX, modello dati e formule, sviluppo in Glide e formazione degli utenti.</p></div>
+        </div>
+        <aside class="case-side" aria-label="Strumenti di Analisi concorrenza">
+          <h4>Strumenti</h4>
+          <div class="tags"><span class="chip plain">Glide</span><span class="chip plain">UI/UX</span><span class="chip plain">Data model</span></div>
+        </aside>
+      </div>
+      <div class="shots">
+        <figure class="shot wide"><img src="img/analisi-concorrenza-1-analisi.jpg" alt="Schermata Analisi: tabella e barre che confrontano listino, sconto e prezzo netto di un articolo con tre concorrenti" width="1440" height="905" loading="lazy"><figcaption>Analisi di un articolo: listino, sconto e prezzo netto a confronto con i concorrenti.</figcaption></figure>
+        <figure class="shot"><img src="img/analisi-concorrenza-2-segnalazione.jpg" alt="Schermata Segnalazione: grafico dei prezzi scontati, scostamento dal prezzo segnalato e dettagli della segnalazione" width="1440" height="1044" loading="lazy"><figcaption>Segnalazione di un prezzo dal campo, con il margine calcolato in automatico.</figcaption></figure>
+        <figure class="shot"><img src="img/analisi-concorrenza-3-dati.jpg" alt="Schermata Dati: statistiche su segnalazioni, utenti e articoli codificati per concorrente" width="1440" height="1260" loading="lazy"><figcaption>Dashboard per il marketing: segnalazioni, utenti e copertura dei listini.</figcaption></figure>
+      </div>
+    </article>
+
+    <article class="case-block" id="projects-management" aria-labelledby="h-c2">
+      <div class="case-head"><span class="eyebrow">Vendite internazionali</span><h3 id="h-c2">Projects Management</h3><p>Tutti i progetti dei clienti, di tutte le filiali, in un unico posto.</p></div>
+      <div class="case">
+        <div class="case-text">
+          <div><h4>Il problema</h4><p>Le filiali seguivano progetti con i clienti in paesi diversi, ognuna con i propri file. Mancava una visione d'insieme su quali prodotti venivano proposti, in quali settori e con quali opportunità, e le esperienze di una filiale non arrivavano alle altre.</p></div>
+          <div><h4>La soluzione</h4>
+            <ul class="feat">
+              <li>Una dashboard con i progetti per linea di prodotto, settore di applicazione e paese, con mappa e ultimi inserimenti</li>
+              <li>Una scheda per ogni progetto con descrizione, foto, prodotti quotati, concorrenti, vantaggi della nostra soluzione e commenti</li>
+              <li>Dati riservati (cliente, mercato potenziale) visibili solo ai responsabili di filiale e agli amministratori</li>
+              <li>Un catalogo delle linee di prodotto con l'elenco di tutti i prodotti quotati nei progetti</li>
+            </ul></div>
+          <div><h4>Il mio ruolo</h4><p>Progettazione della struttura dati e dei permessi per ruolo, UI/UX, sviluppo in Glide e messa in uso nelle filiali estere.</p></div>
+        </div>
+        <aside class="case-side" aria-label="Strumenti di Projects Management">
+          <h4>Strumenti</h4>
+          <div class="tags"><span class="chip plain">Glide</span><span class="chip plain">Mappe</span><span class="chip plain">Ruoli e permessi</span></div>
+        </aside>
+      </div>
+      <div class="shots">
+        <figure class="shot wide"><img src="img/projects-1-dashboard.jpg" alt="Dashboard: grafici dei progetti per linea di prodotto e per settore, ultimi progetti e progetti per paese" width="1440" height="1371" loading="lazy"><figcaption>Dashboard: progetti per linea di prodotto, settore e paese.</figcaption></figure>
+        <figure class="shot"><img src="img/projects-2-prodotti.jpg" alt="Catalogo delle linee di prodotto e tabella dei prodotti quotati nei progetti" width="1440" height="901" loading="lazy"><figcaption>Linee di prodotto e prodotti quotati nei progetti.</figcaption></figure>
+        <figure class="shot"><img src="img/projects-3-dettaglio.jpg" alt="Scheda di un progetto con descrizione, informazioni e box dei dati riservati" width="1440" height="898" loading="lazy"><figcaption>Scheda progetto, con i dati riservati visibili solo ai responsabili.</figcaption></figure>
+      </div>
+    </article>
+
+    <article class="case-block" id="marketing-hub" aria-labelledby="h-c3">
+      <div class="case-head"><span class="eyebrow">Marketing</span><h3 id="h-c3">Marketing Hub</h3><p>Un piano di comunicazione unico per la sede e tutte le filiali.</p></div>
+      <div class="case">
+        <div class="case-text">
+          <div><h4>Il problema</h4><p>Sede e filiali pubblicavano su LinkedIn ognuna per conto proprio, con messaggi e tempi diversi. Le idee per nuovi contenuti si perdevano nelle email e mancava un calendario condiviso.</p></div>
+          <div><h4>La soluzione</h4>
+            <ul class="feat">
+              <li>Un hub dove ogni sede propone contenuti (prodotti, casi di studio, eventi) con testo, immagini e file</li>
+              <li>Un flusso di approvazione con stato, data di pubblicazione e calendario condiviso</li>
+              <li>Spunti per nuovi post con l'AI, a partire da un prompt guidato sullo stile dei post già pubblicati</li>
+              <li>Statistiche sui post pubblicati per categoria, per bilanciare il piano editoriale</li>
+            </ul></div>
+          <div><h4>Il mio ruolo</h4><p>Ideazione del processo editoriale, progettazione e sviluppo in Glide, integrazione dell'AI nel flusso di lavoro e coordinamento con le filiali.</p></div>
+        </div>
+        <aside class="case-side" aria-label="Strumenti di Marketing Hub">
+          <h4>Strumenti</h4>
+          <div class="tags"><span class="chip plain">Glide</span><span class="chip plain">AI</span><span class="chip plain">LinkedIn</span><span class="chip plain">Calendario</span></div>
+        </aside>
+      </div>
+      <div class="shots">
+        <figure class="shot wide"><img src="img/marketing-hub-2-proposte.jpg" alt="Proposte di contenuti da approvare, area AI per gli spunti e statistiche dei post per categoria" width="1440" height="938" loading="lazy"><figcaption>Proposte da approvare, spunti con l'AI e statistiche per categoria.</figcaption></figure>
+        <figure class="shot"><img src="img/marketing-hub-1-home.jpg" alt="Home del Marketing Hub con gli obiettivi e la rete di sedi" width="1440" height="812" loading="lazy"><figcaption>La home: obiettivi del piano e rete delle sedi.</figcaption></figure>
+        <figure class="shot"><img src="img/marketing-hub-3-post.jpg" alt="Scheda di un post con stato, data, testo e calendario del mese" width="1440" height="762" loading="lazy"><figcaption>Scheda di un post con stato, data e calendario condiviso.</figcaption></figure>
+      </div>
+    </article>
+
+    <p class="note">Le schermate sono ricostruite con nuovi colori e dati di esempio: aziende, prodotti, codici, prezzi e persone non sono reali.</p>
+  </section>
+
+  <section id="competenze" aria-labelledby="h-competenze">
+    <div class="sec-head">
+      <h2 id="h-competenze">Competenze</h2>
+      <p>Dal CV e dal mio ToolHub, gli strumenti che uso davvero.</p>
+    </div>
+    <div class="skills">
+      <div>
+        <h3>Design e UI/UX</h3>
+        <p>Interfacce per siti, e-commerce B2B e app.</p>
+        <div class="tags"><span class="chip plain">Figma</span><span class="chip plain">Adobe Creative Suite</span><span class="chip plain">Lucidchart</span><span class="chip plain">Canva</span><span class="chip plain">WordPress</span></div>
+      </div>
+      <div>
+        <h3>No-code e automazioni</h3>
+        <p>App e flussi che tolgono lavoro manuale ai processi.</p>
+        <div class="tags"><span class="chip plain">Glide</span><span class="chip plain">PWA</span><span class="chip plain">Zapier</span><span class="chip plain">Make</span><span class="chip plain">GetResponse</span></div>
+      </div>
+      <div>
+        <h3>Marketing e dati</h3>
+        <p>Campagne, analisi e decisioni basate sui numeri.</p>
+        <div class="tags"><span class="chip plain">Power BI</span><span class="chip plain">Google Analytics</span><span class="chip plain">Google Ads</span><span class="chip plain">Keyword Planner</span><span class="chip plain">Hotjar</span><span class="chip plain">Mailchimp</span></div>
+      </div>
+      <div>
+        <h3>Sviluppo e prodotto</h3>
+        <p>Web app in produzione, con pagamenti ed email.</p>
+        <div class="tags"><span class="chip plain">HTML/CSS/JS</span><span class="chip plain">Java + MySQL</span><span class="chip plain">GitHub</span><span class="chip plain">Vercel</span><span class="chip plain">Cloudflare</span><span class="chip plain">Stripe</span><span class="chip plain">Resend</span></div>
+      </div>
+      <div>
+        <h3>AI</h3>
+        <p>Nella strategia aziendale e dentro i prodotti.</p>
+        <div class="tags"><span class="chip plain">Claude</span><span class="chip plain">ChatGPT</span><span class="chip plain">Midjourney</span><span class="chip plain">ElevenLabs</span><span class="chip plain">Runway</span></div>
+      </div>
+      <div>
+        <h3>3D e progettazione</h3>
+        <p>Dal disegno tecnico ai render fotorealistici.</p>
+        <div class="tags"><span class="chip plain">AutoCAD 2D</span><span class="chip plain">SolidWorks</span><span class="chip plain">KeyShot</span><span class="chip plain">Twinmotion</span><span class="chip plain">Stampa 3D</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="esperienza" aria-labelledby="h-esperienza">
+    <div class="sec-head">
+      <h2 id="h-esperienza">Esperienza</h2>
+      <p>Dal disegno tecnico al web, al marketing e al no-code.</p>
+    </div>
+    <div class="timeline">
+      <div class="role">
+        <time>12/2022 – oggi</time>
+        <div>
+          <h3>Web designer, Referente Marketing Italia e No-code developer</h3>
+          <div class="org">SIT S.p.A. · Milano</div>
+          <ul class="feat">
+            <li>Realizzate 5 Progressive Web App no-code per semplificare i processi aziendali interni</li>
+            <li>Progettazione UI/UX dell'e-commerce B2B, con circa 30.000 prodotti</li>
+            <li>Gestione del marketing digitale a livello globale per 10 filiali e analisi dati Italia con Power BI</li>
+            <li>Project management del benchmark di customer satisfaction</li>
+            <li>Introduzione dell'AI nella strategia aziendale e della realtà aumentata nel marketing</li>
+          </ul>
+        </div>
+      </div>
+      <div class="role">
+        <time>2026 – oggi</time>
+        <div>
+          <h3>Fondatore e sviluppatore</h3>
+          <div class="org">EnoList, Firmadocumenti, TweakBlock</div>
+          <p>Ideazione, sviluppo, lancio e gestione di prodotti digitali.</p>
+        </div>
+      </div>
+      <div class="role">
+        <time>07/2019 – oggi</time>
+        <div>
+          <h3>Co-fondatore e Project manager</h3>
+          <div class="org">Customeasy S.r.l.S. · web agency, Melegnano</div>
+          <p>Ho avviato da zero una piccola web agency: guida del team, ricerca di clienti e partner, campagne di marketing digitale, analisi dati e strategia.</p>
+        </div>
+      </div>
+      <div class="role">
+        <time>06/2018 – oggi</time>
+        <div>
+          <h3>Consulente IT</h3>
+          <div class="org">Freelance</div>
+          <p>Consulenza strategica alle aziende, integrazione di strumenti e tecnologie, sviluppo di siti web, campagne social, DEM, grafica e render 3D di prodotto.</p>
+        </div>
+      </div>
+      <div class="role">
+        <time>06/2016 – 07/2020</time>
+        <div>
+          <h3>Supporto tecnico e Web designer</h3>
+          <div class="org">Beginning S.r.l.</div>
+          <p>Web design, gestione delle attività di marketing e render fotorealistici.</p>
+        </div>
+      </div>
+      <div class="role">
+        <time>06/2012 – 05/2016</time>
+        <div>
+          <h3>Progettista tecnico</h3>
+          <div class="org">I.T.I.D. S.r.l.</div>
+          <p>Progettazione di impianti industriali di climatizzazione (HVAC).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="formazione" aria-labelledby="h-formazione">
+    <div class="sec-head">
+      <h2 id="h-formazione">Formazione e lingue</h2>
+    </div>
+    <div class="edu">
+      <div class="timeline">
+        <div class="role">
+          <time>Glide</time>
+          <div><h3>Certificazione Glide, livelli 1 e 2</h3><div class="org">Sviluppo di app no-code</div></div>
+        </div>
+        <div class="role">
+          <time>02 – 06/2017</time>
+          <div><h3>Programmazione Java e MySQL</h3><div class="org">ANT Milano · Java base 240 h e intermedio 200 h</div></div>
+        </div>
+        <div class="role">
+          <time>10/2015 – 01/2016</time>
+          <div><h3>Perfezionamento della lingua inglese, livello C1</h3><div class="org">EC English Language Centres · Londra</div></div>
+        </div>
+        <div class="role">
+          <time>Diploma</time>
+          <div><h3>Perito Meccanico</h3><div class="org">I.I.S. G. Giorgi · Milano</div></div>
+        </div>
+      </div>
+      <aside class="langs" aria-label="Lingue">
+        <h4>Lingue</h4>
+        <div class="price"><span>Italiano</span><span>madrelingua</span></div>
+        <div class="price"><span>Inglese</span><span>C1</span></div>
+        <div class="price"><span>Spagnolo</span><span>buono</span></div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="altro" aria-labelledby="h-altro">
+    <div class="sec-head">
+      <h2 id="h-altro">Altri progetti</h2>
+      <p>Esperimenti nati dalla curiosità, fuori dal lavoro quotidiano.</p>
+    </div>
+    <ul class="side-projects">
+      <li><h3>Brevetto industriale</h3><p>Domanda di brevetto italiano per un'invenzione industriale, con prototipi realizzati in stampa 3D.</p></li>
+      <li><h3>Real and Virtual</h3><p>Una criptovaluta creata da zero, ancora negoziabile su PancakeSwap e registrata su BscScan.</p></li>
+      <li><h3>Centralina idroponica</h3><p>Ideazione di una centralina per la gestione delle coltivazioni idroponiche.</p></li>
+    </ul>
+  </section>
+
+  <section id="contatti" class="contact" aria-labelledby="h-contatti">
+    <h2 id="h-contatti">Cerchi qualcuno che unisca design, no-code e marketing? Parliamone.</h2>
+    <div class="links">
+      <a class="btn primary" href="https://www.linkedin.com/in/parenti-edoardo" target="_blank" rel="noopener">Scrivimi su LinkedIn</a>
+      <a class="btn" href="mailto:parentiedoardo@gmail.com">parentiedoardo@gmail.com</a>
+      <a class="btn" href="https://github.com/parentiedoardo" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </section>
+
+  </main>
+
+  <main id="view-bento" class="bento" aria-label="Portfolio in stile bento">
+    <article class="tile t-intro">
+      <span class="eyebrow">UI/UX · No-code · Digital marketing</span>
+      <h1 class="name">Edoardo Parenti<br><span>Prodotti digitali, dall'idea al primo cliente.</span></h1>
+      <p>Web designer e no-code developer a Milano. Progetto interfacce, app interne e strategie di marketing digitale, e lancio prodotti web miei.</p>
+      <div class="cta"><a class="btn primary" href="https://www.linkedin.com/in/parenti-edoardo" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="mailto:parentiedoardo@gmail.com">Scrivimi</a></div>
+    </article>
+    <figure class="tile t-photo"><img src="foto-edoardo.jpg" alt="Ritratto di Edoardo Parenti" width="640" height="640"></figure>
+    <article class="tile t-stat"><b>10+</b><span>anni nel web, dal disegno tecnico al no-code</span></article>
+    <article class="tile t-stat t-accent"><b>5</b><span>PWA no-code per processi aziendali</span></article>
+
+    <h2 class="b-label">Progetti</h2>
+    <a class="tile t-proj t-wide" href="https://enolist.com/" target="_blank" rel="noopener">
+      <img class="mark" src="img/logos/enolist.svg" alt="" width="48" height="48">
+      <h3>EnoList</h3><p>Menu digitale con QR code per bar, ristoranti ed enoteche: prezzi e disponibilità aggiornati dal telefono, in 6 lingue.</p><span class="domain">enolist.com ↗</span></a>
+    <a class="tile t-proj t-wide" href="https://firmadocumenti.app/" target="_blank" rel="noopener">
+      <img class="mark" src="img/logos/firmadocumenti.svg" alt="" width="48" height="48">
+      <h3>Firmadocumenti</h3><p>Firma di PDF nel browser, senza caricare il documento su un server.</p><span class="domain">firmadocumenti.app ↗</span></a>
+    <a class="tile t-proj" href="https://tweakblock.com/" target="_blank" rel="noopener">
+      <img class="mark" src="img/logos/tweakblock.svg" alt="" width="48" height="48">
+      <h3>TweakBlock</h3><p>Blocchi HTML pronti per le app no-code create con Glide.</p><span class="domain">tweakblock.com ↗</span></a>
+    <a class="tile t-proj" href="https://parentiedoardo.github.io/toolhub/" target="_blank" rel="noopener">
+      <img class="mark" src="img/logos/toolhub.svg" alt="" width="48" height="48">
+      <h3>ToolHub</h3><p>Il launcher con gli strumenti digitali che uso ogni giorno.</p><span class="domain">toolhub ↗</span></a>
+    <a class="tile t-proj" href="https://parentiedoardo.github.io/splitview/" target="_blank" rel="noopener">
+      <img class="mark" src="img/logos/splitview.svg" alt="" width="48" height="48">
+      <h3>SplitView</h3><p>Finestre di Chrome disposte a griglia su uno o due monitor.</p><span class="domain">splitview ↗</span></a>
+    <a class="tile t-proj" href="https://command-dashboard-one.vercel.app/" target="_blank" rel="noopener">
+      <img class="mark" src="img/logos/command-board.svg" alt="" width="48" height="48">
+      <h3>Command Board</h3><p>Dashboard di comando per gestire in modo dinamico i progetti in corso.</p><span class="domain">command board ↗</span></a>
+
+    <h2 class="b-label">Casi di studio</h2>
+    <article class="tile t-case t-wide">
+      <img src="img/analisi-concorrenza-1-analisi.jpg" alt="Schermata dell'app Analisi concorrenza" width="1440" height="905" loading="lazy">
+      <div><span class="eyebrow">Vendite</span><h3>Analisi concorrenza</h3><p>I prezzi dei concorrenti in tasca alla forza vendita, con margine calcolato in automatico.</p><button class="btn" type="button" data-goto="analisi-concorrenza">Leggi il caso</button></div>
+    </article>
+    <article class="tile t-case">
+      <img src="img/projects-1-dashboard.jpg" alt="Schermata dell'app Projects Management" width="1440" height="1371" loading="lazy">
+      <div><span class="eyebrow">Vendite internazionali</span><h3>Projects Management</h3><p>I progetti di tutte le filiali in un unico posto.</p><button class="btn" type="button" data-goto="projects-management">Leggi il caso</button></div>
+    </article>
+    <article class="tile t-case">
+      <img src="img/marketing-hub-2-proposte.jpg" alt="Schermata dell'app Marketing Hub" width="1440" height="938" loading="lazy">
+      <div><span class="eyebrow">Marketing</span><h3>Marketing Hub</h3><p>Un piano LinkedIn unico per sede e filiali, con spunti dall'AI.</p><button class="btn" type="button" data-goto="marketing-hub">Leggi il caso</button></div>
+    </article>
+
+    <h2 class="b-label">Profilo</h2>
+    <article class="tile t-wide t-skills">
+      <h3>Competenze</h3>
+      <div class="tags"><span class="chip plain">Figma</span><span class="chip plain">UI/UX</span><span class="chip plain">Glide</span><span class="chip plain">PWA</span><span class="chip plain">Zapier</span><span class="chip plain">Make</span><span class="chip plain">Power BI</span><span class="chip plain">Google Analytics</span><span class="chip plain">Google Ads</span><span class="chip plain">HTML/CSS/JS</span><span class="chip plain">WordPress</span><span class="chip plain">Stripe</span><span class="chip plain">Vercel</span><span class="chip plain">Claude</span><span class="chip plain">ChatGPT</span><span class="chip plain">AutoCAD</span><span class="chip plain">SolidWorks</span><span class="chip plain">KeyShot</span></div>
+    </article>
+    <article class="tile t-wide t-exp">
+      <h3>Esperienza</h3>
+      <ul class="mini">
+        <li><time>2022 – oggi</time><span><b>Web designer e No-code developer</b> · SIT S.p.A.</span></li>
+        <li><time>2026 – oggi</time><span><b>Fondatore</b> · EnoList, Firmadocumenti, TweakBlock</span></li>
+        <li><time>2019 – oggi</time><span><b>Co-fondatore e Project manager</b> · Customeasy</span></li>
+        <li><time>2018 – oggi</time><span><b>Consulente IT</b> · Freelance</span></li>
+        <li><time>2012 – 2020</time><span><b>Web design e progettazione tecnica</b> · Beginning, I.T.I.D.</span></li>
+      </ul>
+    </article>
+    <article class="tile t-edu">
+      <h3>Formazione</h3>
+      <ul class="mini plain"><li>Certificazione Glide, livelli 1 e 2</li><li>Java e MySQL, 440 ore · ANT Milano</li><li>Diploma di Perito Meccanico</li></ul>
+    </article>
+    <article class="tile t-lang">
+      <h3>Lingue</h3>
+      <ul class="mini plain"><li>Italiano · madrelingua</li><li>Inglese · C1</li><li>Spagnolo</li></ul>
+    </article>
+    <article class="tile t-wide t-side">
+      <h3>Altri progetti</h3>
+      <p>Una domanda di brevetto industriale con prototipi in stampa 3D, una criptovaluta creata da zero e una centralina per coltivazioni idroponiche.</p>
+    </article>
+    <article class="tile t-full t-contact">
+      <h2>Cerchi qualcuno che unisca design, no-code e marketing? Parliamone.</h2>
+      <div class="links"><a class="btn primary" href="https://www.linkedin.com/in/parenti-edoardo" target="_blank" rel="noopener">Scrivimi su LinkedIn</a><a class="btn" href="mailto:parentiedoardo@gmail.com">parentiedoardo@gmail.com</a><a class="btn" href="https://github.com/parentiedoardo" target="_blank" rel="noopener">GitHub</a></div>
+    </article>
+  </main>
+
+  <footer>© 2026 Edoardo Parenti</footer>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  var classic = document.getElementById('view-classic');
+  var bento = document.getElementById('view-bento');
+  var btn = document.getElementById('style-toggle');
+  function apply(style) {
+    var isBento = style === 'bento';
+    root.setAttribute('data-style', isBento ? 'bento' : 'classic');
+    classic.hidden = isBento;
+    bento.hidden = !isBento;
+    btn.querySelector('span').textContent = isBento ? 'Stile classico' : 'Stile bento';
+    btn.setAttribute('aria-pressed', isBento ? 'true' : 'false');
+    try { localStorage.setItem('portfolio-style', style); } catch (e) {}
+  }
+  var saved = 'bento';
+  try { saved = localStorage.getItem('portfolio-style') || 'bento'; } catch (e) {}
+  if (location.hash === '#bento') saved = 'bento';
+  if (location.hash === '#classico') saved = 'classic';
+  apply(saved);
+  btn.addEventListener('click', function () {
+    apply(root.getAttribute('data-style') === 'bento' ? 'classic' : 'bento');
+    window.scrollTo(0, 0);
+  });
+  bento.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-goto]');
+    if (!t) return;
+    apply('classic');
+    var el = document.getElementById(t.getAttribute('data-goto'));
+    if (el) el.scrollIntoView();
+  });
+})();
+</script>
+</body>
+</html>
