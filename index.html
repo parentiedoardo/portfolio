@@ -286,6 +286,27 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
   .t-photo { aspect-ratio: 4 / 3; }
   .mini li { grid-template-columns: minmax(0, 1fr); gap: 0; }
 }
+
+/* Correzione: un elemento hidden resta nascosto anche se ha display grid */
+[hidden] { display: none !important; }
+
+/* Progetti cliccabili e scheda in overlay */
+[data-project] { cursor: pointer; }
+.project { transition: border-color .2s; }
+.project:hover { border-color: var(--ink); }
+.project .more { font: 600 .85rem var(--f-body); color: var(--accent); text-decoration: none; margin-top: 2px; }
+.project .more:hover { text-decoration: underline; }
+.project.featured .shot { width: 100%; height: auto; aspect-ratio: 16 / 10; align-self: center; object-fit: cover; object-position: top; border-radius: 10px; border: 1px solid var(--line); }
+.pdlg { padding: 0; border: 0; border-radius: 20px; width: min(760px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); background: var(--surface); color: var(--ink); box-shadow: 0 30px 80px rgba(10, 14, 24, .35); }
+.pdlg::backdrop { background: rgba(10, 14, 24, .55); backdrop-filter: blur(3px); }
+.pdlg-shot { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-bottom: 1px solid var(--line); background: var(--bg); }
+.pdlg-body { padding: 24px 26px 26px; display: grid; gap: 14px; }
+.pdlg-body .p-top h3 { font-size: 1.5rem; }
+.pdlg-body p { margin: 0; }
+.pdlg-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+.pdlg-close { position: absolute; top: 12px; right: 12px; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 1.3rem; line-height: 1; cursor: pointer; display: grid; place-items: center; }
+.pdlg-close:hover { border-color: var(--ink); }
+@media (max-width: 760px) { .project.featured .shot { min-height: 0; height: auto; aspect-ratio: 16 / 10; } .pdlg-body { padding: 20px; } }
 </style>
 </head>
 <body>
@@ -312,11 +333,11 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
    <div class="hero-text">
     <span class="eyebrow">UI/UX · No-code · Digital marketing</span>
     <h1>Edoardo Parenti<br><span>Prodotti digitali, dall'idea al primo cliente.</span></h1>
-    <p class="lead">Web designer e no-code developer a Milano. In azienda progetto interfacce, app interne e strategie di marketing digitale; in proprio sviluppo e lancio prodotti web come EnoList, Firmadocumenti e TweakBlock. Seguo tutto il ciclo, dal design ai dati, fino a pagamenti e automazioni.</p>
+    <p class="lead">Web designer, no-code/low-code developer a Milano. Progetto interfacce, app interne e strategie di marketing digitale; sviluppo e lancio prodotti web come TweakBlock, EnoList e Firmadocumenti. Seguo tutto il ciclo, dal design ai dati, fino a pagamenti e automazioni.</p>
     <ul class="facts" aria-label="In sintesi">
       <li><b>10+</b>anni nel web</li>
       <li><b>5</b>PWA no-code per processi aziendali</li>
-      <li><b>6</b>prodotti e progetti online</li>
+      <li><b>5</b>prodotti e progetti online</li>
     </ul>
     <div class="cta">
       <a class="btn primary" href="#progetti">Guarda i progetti</a>
@@ -334,13 +355,34 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
 
     <div class="projects">
 
-      <article class="project featured">
+      <article class="project featured" data-project="tweakblock">
         <div class="p-body">
+          <div class="p-top">
+            <img class="mark" src="img/logos/tweakblock.svg" alt="" width="40" height="40">
+            <div>
+              <h3>TweakBlock</h3>
+              <span class="domain">tweakblock.com</span>
+            </div>
+          </div>
+          <p>Nato da un'esigenza concreta: sviluppando web app in Glide dovevo scrivere, confrontare e verificare il codice del componente Rich Text. Ho creato un editor online e, progetto dopo progetto, l'ho trasformato in uno strumento completo per chi costruisce app con Glide.</p>
+          <ul class="feat">
+            <li>Verifica della correttezza del codice e rilevamento degli script</li>
+            <li>CSS inline, rimozione di righe e spazi vuoti, indentazione automatica</li>
+            <li>Emulatore della struttura dell'editor di Glide</li>
+            <li>Libreria di componenti pronti e archivio per il codice personalizzato</li>
+          </ul>
+          <div class="meta"><span class="chip">No-code</span><span class="chip">Glide</span><span class="chip">Developer tool</span></div>
+          <a class="more" href="https://tweakblock.com/" data-project="tweakblock">Apri la scheda <span aria-hidden="true">→</span></a>
+        </div>
+        <img class="shot" src="img/siti/tweakblock.jpg" alt="Home page di TweakBlock" width="1440" height="900" loading="lazy">
+      </article>
+
+      <article class="project" data-project="enolist">
           <div class="p-top">
             <img class="mark" src="img/logos/enolist.svg" alt="" width="40" height="40">
             <div>
               <h3>EnoList</h3>
-              <a class="domain" href="https://enolist.com/" target="_blank" rel="noopener">enolist.com ↗</a>
+              <span class="domain">enolist.com</span>
             </div>
           </div>
           <p>Menu digitale con QR code per bar, ristoranti ed enoteche. Il gestore aggiorna prezzi e disponibilità dal telefono e i clienti vedono subito le modifiche, senza ristampare nulla e senza installare app.</p>
@@ -351,81 +393,51 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
             <li>Prenotazioni, turni del personale e statistiche sui QR</li>
           </ul>
           <div class="meta"><span class="chip">SaaS B2B</span><span class="chip">Ristorazione</span><span class="chip">Multilingua</span></div>
-        </div>
-        <div class="side">
-          <h4>Il mio ruolo</h4>
-          <p style="color:var(--muted);font-size:.95rem">Ideazione, design, sviluppo, pagamenti e lancio.</p>
-        </div>
+          <a class="more" href="https://enolist.com/" data-project="enolist">Apri la scheda <span aria-hidden="true">→</span></a>
       </article>
 
-      <article class="project">
-        <div class="p-top">
-          <img class="mark" src="img/logos/firmadocumenti.svg" alt="" width="40" height="40">
-          <div>
-            <h3>Firmadocumenti</h3>
-            <a class="domain" href="https://firmadocumenti.app/" target="_blank" rel="noopener">firmadocumenti.app ↗</a>
+      <article class="project" data-project="firmadocumenti">
+          <div class="p-top">
+            <img class="mark" src="img/logos/firmadocumenti.svg" alt="" width="40" height="40">
+            <div>
+              <h3>Firmadocumenti</h3>
+              <span class="domain">firmadocumenti.app</span>
+            </div>
           </div>
-        </div>
-        <p>Firma di PDF direttamente nel browser: il documento viene elaborato in locale e non lascia mai il dispositivo. Pensato per privati e piccole imprese che firmano preventivi e contratti.</p>
-        <ul class="feat">
-          <li>Firma scritta, disegnata o caricata, più campi data e testo</li>
-          <li>Documenti multipagina, ottimizzato per il touch</li>
-          <li>Pagamenti online integrati con Stripe</li>
-        </ul>
-        <div class="meta"><span class="chip">Privacy by design</span><span class="chip">Stripe</span></div>
+          <p>Firma di PDF direttamente nel browser: il documento viene elaborato in locale e non lascia mai il dispositivo. Pensato per privati e piccole imprese che firmano preventivi e contratti.</p>
+          <ul class="feat">
+            <li>Firma scritta, disegnata o caricata, più campi data e testo</li>
+            <li>Documenti multipagina, ottimizzato per il touch</li>
+            <li>Pagamenti online integrati con Stripe</li>
+          </ul>
+          <div class="meta"><span class="chip">Privacy by design</span><span class="chip">Stripe</span></div>
+          <a class="more" href="https://firmadocumenti.app/" data-project="firmadocumenti">Apri la scheda <span aria-hidden="true">→</span></a>
       </article>
 
-      <article class="project">
-        <div class="p-top">
-          <img class="mark" src="img/logos/tweakblock.svg" alt="" width="40" height="40">
-          <div>
-            <h3>TweakBlock</h3>
-            <a class="domain" href="https://tweakblock.com/" target="_blank" rel="noopener">tweakblock.com ↗</a>
+      <article class="project" data-project="toolhub">
+          <div class="p-top">
+            <img class="mark" src="img/logos/toolhub.svg" alt="" width="40" height="40">
+            <div>
+              <h3>ToolHub</h3>
+              <span class="domain">parentiedoardo.github.io/toolhub</span>
+            </div>
           </div>
-        </div>
-        <p>Blocchi HTML pronti per la colonna Rich Text di Glide, il costruttore di app no-code. Si configura il blocco, si copia e si incolla nell'app.</p>
-        <ul class="feat">
-          <li>Libreria di componenti, editor visuale e validatore per Glide</li>
-          <li>"Da immagine a codice": da uno screenshot all'HTML con l'AI di Claude</li>
-          <li>Interfaccia in 6 lingue, guide Academy</li>
-        </ul>
-        <div class="meta"><span class="chip">No-code</span><span class="chip">AI</span></div>
+          <p>Launcher personale che raccoglie per categoria gli strumenti digitali che uso ogni giorno, con salvataggio nel browser e sincronizzazione sul repository.</p>
+          <div class="meta"><span class="chip">GitHub Pages</span><span class="chip plain">Uso personale</span></div>
+          <a class="more" href="https://parentiedoardo.github.io/toolhub/" data-project="toolhub">Apri la scheda <span aria-hidden="true">→</span></a>
       </article>
 
-      <article class="project">
-        <div class="p-top">
-          <img class="mark" src="img/logos/toolhub.svg" alt="" width="40" height="40">
-          <div>
-            <h3>ToolHub</h3>
-            <a class="domain" href="https://parentiedoardo.github.io/toolhub/" target="_blank" rel="noopener">parentiedoardo.github.io/toolhub ↗</a>
+      <article class="project" data-project="splitview">
+          <div class="p-top">
+            <img class="mark" src="img/logos/splitview.svg" alt="" width="40" height="40">
+            <div>
+              <h3>SplitView</h3>
+              <span class="domain">parentiedoardo.github.io/splitview</span>
+            </div>
           </div>
-        </div>
-        <p>Launcher personale che raccoglie per categoria gli strumenti digitali che uso ogni giorno, con salvataggio nel browser e sincronizzazione sul repository.</p>
-        <div class="meta"><span class="chip">GitHub Pages</span><span class="chip plain">Uso personale</span></div>
-      </article>
-
-      <article class="project">
-        <div class="p-top">
-          <img class="mark" src="img/logos/splitview.svg" alt="" width="40" height="40">
-          <div>
-            <h3>SplitView</h3>
-            <a class="domain" href="https://parentiedoardo.github.io/splitview/" target="_blank" rel="noopener">parentiedoardo.github.io/splitview ↗</a>
-          </div>
-        </div>
-        <p>Genera uno script per Windows o macOS che apre finestre reali di Chrome disposte a griglia su uno o due monitor, con anteprima e preset esportabili.</p>
-        <div class="meta"><span class="chip">Produttività</span><span class="chip plain">Uso personale</span></div>
-      </article>
-
-      <article class="project">
-        <div class="p-top">
-          <img class="mark" src="img/logos/command-board.svg" alt="" width="40" height="40">
-          <div>
-            <h3>Command Board</h3>
-            <a class="domain" href="https://command-dashboard-one.vercel.app/" target="_blank" rel="noopener">command-dashboard-one.vercel.app ↗</a>
-          </div>
-        </div>
-        <p>Dashboard di comando per gestire in modo dinamico i progetti in corso.</p>
-        <div class="meta"><span class="chip">Vercel</span></div>
+          <p>Genera uno script per Windows o macOS che apre finestre reali di Chrome disposte a griglia su uno o due monitor, con anteprima e preset esportabili.</p>
+          <div class="meta"><span class="chip">Produttività</span><span class="chip plain">Uso personale</span></div>
+          <a class="more" href="https://parentiedoardo.github.io/splitview/" data-project="splitview">Apri la scheda <span aria-hidden="true">→</span></a>
       </article>
 
     </div>
@@ -678,7 +690,7 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
     <article class="tile t-intro">
       <span class="eyebrow">UI/UX · No-code · Digital marketing</span>
       <h1 class="name">Edoardo Parenti<br><span>Prodotti digitali, dall'idea al primo cliente.</span></h1>
-      <p>Web designer e no-code developer a Milano. Progetto interfacce, app interne e strategie di marketing digitale, e lancio prodotti web miei.</p>
+      <p>Web designer, no-code/low-code developer a Milano. Progetto interfacce, app interne e strategie di marketing digitale; sviluppo e lancio prodotti web come TweakBlock, EnoList e Firmadocumenti. Seguo tutto il ciclo, dal design ai dati, fino a pagamenti e automazioni.</p>
       <div class="cta"><a class="btn primary" href="https://www.linkedin.com/in/parenti-edoardo" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="mailto:parentiedoardo@gmail.com">Scrivimi</a></div>
     </article>
     <figure class="tile t-photo"><img src="foto-edoardo.jpg" alt="Ritratto di Edoardo Parenti" width="640" height="640"></figure>
@@ -686,24 +698,21 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
     <article class="tile t-stat t-accent"><b>5</b><span>PWA no-code per processi aziendali</span></article>
 
     <h2 class="b-label">Progetti</h2>
-    <a class="tile t-proj t-wide" href="https://enolist.com/" target="_blank" rel="noopener">
-      <img class="mark" src="img/logos/enolist.svg" alt="" width="48" height="48">
-      <h3>EnoList</h3><p>Menu digitale con QR code per bar, ristoranti ed enoteche: prezzi e disponibilità aggiornati dal telefono, in 6 lingue.</p><span class="domain">enolist.com ↗</span></a>
-    <a class="tile t-proj t-wide" href="https://firmadocumenti.app/" target="_blank" rel="noopener">
-      <img class="mark" src="img/logos/firmadocumenti.svg" alt="" width="48" height="48">
-      <h3>Firmadocumenti</h3><p>Firma di PDF nel browser, senza caricare il documento su un server.</p><span class="domain">firmadocumenti.app ↗</span></a>
-    <a class="tile t-proj" href="https://tweakblock.com/" target="_blank" rel="noopener">
+    <a class="tile t-proj t-wide" href="https://tweakblock.com/" data-project="tweakblock">
       <img class="mark" src="img/logos/tweakblock.svg" alt="" width="48" height="48">
-      <h3>TweakBlock</h3><p>Blocchi HTML pronti per le app no-code create con Glide.</p><span class="domain">tweakblock.com ↗</span></a>
-    <a class="tile t-proj" href="https://parentiedoardo.github.io/toolhub/" target="_blank" rel="noopener">
+      <h3>TweakBlock</h3><p>Editor online per scrivere, verificare e ottimizzare il codice Rich Text delle app Glide, con libreria di componenti pronti.</p><span class="domain">Apri la scheda →</span></a>
+    <a class="tile t-proj" href="https://enolist.com/" data-project="enolist">
+      <img class="mark" src="img/logos/enolist.svg" alt="" width="48" height="48">
+      <h3>EnoList</h3><p>Menu digitale con QR code per bar, ristoranti ed enoteche: aggiornato dal telefono, in 6 lingue.</p><span class="domain">Apri la scheda →</span></a>
+    <a class="tile t-proj" href="https://firmadocumenti.app/" data-project="firmadocumenti">
+      <img class="mark" src="img/logos/firmadocumenti.svg" alt="" width="48" height="48">
+      <h3>Firmadocumenti</h3><p>Firma di PDF nel browser, senza caricare il documento su un server.</p><span class="domain">Apri la scheda →</span></a>
+    <a class="tile t-proj t-wide" href="https://parentiedoardo.github.io/toolhub/" data-project="toolhub">
       <img class="mark" src="img/logos/toolhub.svg" alt="" width="48" height="48">
-      <h3>ToolHub</h3><p>Il launcher con gli strumenti digitali che uso ogni giorno.</p><span class="domain">toolhub ↗</span></a>
-    <a class="tile t-proj" href="https://parentiedoardo.github.io/splitview/" target="_blank" rel="noopener">
+      <h3>ToolHub</h3><p>Il launcher con gli strumenti digitali che uso ogni giorno.</p><span class="domain">Apri la scheda →</span></a>
+    <a class="tile t-proj t-wide" href="https://parentiedoardo.github.io/splitview/" data-project="splitview">
       <img class="mark" src="img/logos/splitview.svg" alt="" width="48" height="48">
-      <h3>SplitView</h3><p>Finestre di Chrome disposte a griglia su uno o due monitor.</p><span class="domain">splitview ↗</span></a>
-    <a class="tile t-proj" href="https://command-dashboard-one.vercel.app/" target="_blank" rel="noopener">
-      <img class="mark" src="img/logos/command-board.svg" alt="" width="48" height="48">
-      <h3>Command Board</h3><p>Dashboard di comando per gestire in modo dinamico i progetti in corso.</p><span class="domain">command board ↗</span></a>
+      <h3>SplitView</h3><p>Finestre di Chrome disposte a griglia su uno o due monitor.</p><span class="domain">Apri la scheda →</span></a>
 
     <h2 class="b-label">Casi di studio</h2>
     <article class="tile t-case t-wide">
@@ -753,6 +762,16 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
   </main>
 
   <footer>© 2026 Edoardo Parenti</footer>
+  <dialog class="pdlg" id="project-dialog" aria-labelledby="pdlg-title">
+    <button class="pdlg-close" type="button" aria-label="Chiudi" data-close>×</button>
+    <img class="pdlg-shot" id="pdlg-shot" src="" alt="" width="1440" height="900">
+    <div class="pdlg-body">
+      <div class="p-top"><img class="mark" id="pdlg-logo" src="" alt="" width="40" height="40"><div><h3 id="pdlg-title"></h3><span class="domain" id="pdlg-domain"></span></div></div>
+      <p id="pdlg-desc"></p>
+      <ul class="feat" id="pdlg-feat"></ul>
+      <div class="pdlg-actions"><a class="btn primary" id="pdlg-link" href="#" target="_blank" rel="noopener">Vai al sito <span aria-hidden="true">↗</span></a><button class="btn" type="button" data-close>Chiudi</button></div>
+    </div>
+  </dialog>
 </div>
 <script>
 (function () {
@@ -784,6 +803,36 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
     apply('classic');
     var el = document.getElementById(t.getAttribute('data-goto'));
     if (el) el.scrollIntoView();
+  });
+})();
+
+(function () {
+  var data = {"tweakblock": {"name": "TweakBlock", "url": "https://tweakblock.com/", "dom": "tweakblock.com", "desc": "Nato da un'esigenza concreta: sviluppando web app in Glide dovevo scrivere, confrontare e verificare il codice del componente Rich Text. Ho creato un editor online e, progetto dopo progetto, l'ho trasformato in uno strumento completo per chi costruisce app con Glide.", "feats": ["Verifica della correttezza del codice e rilevamento degli script", "CSS inline, rimozione di righe e spazi vuoti, indentazione automatica", "Emulatore della struttura dell'editor di Glide", "Libreria di componenti pronti e archivio per il codice personalizzato"]}, "enolist": {"name": "EnoList", "url": "https://enolist.com/", "dom": "enolist.com", "desc": "Menu digitale con QR code per bar, ristoranti ed enoteche. Il gestore aggiorna prezzi e disponibilità dal telefono e i clienti vedono subito le modifiche, senza ristampare nulla e senza installare app.", "feats": ["Importazione del menu da foto o PDF", "Un QR per tavolo, 10 stili di menu, filtro per i 14 allergeni UE", "Traduzione automatica in 6 lingue, piatti del giorno e happy hour", "Prenotazioni, turni del personale e statistiche sui QR"]}, "firmadocumenti": {"name": "Firmadocumenti", "url": "https://firmadocumenti.app/", "dom": "firmadocumenti.app", "desc": "Firma di PDF direttamente nel browser: il documento viene elaborato in locale e non lascia mai il dispositivo. Pensato per privati e piccole imprese che firmano preventivi e contratti.", "feats": ["Firma scritta, disegnata o caricata, più campi data e testo", "Documenti multipagina, ottimizzato per il touch", "Pagamenti online integrati con Stripe"]}, "toolhub": {"name": "ToolHub", "url": "https://parentiedoardo.github.io/toolhub/", "dom": "parentiedoardo.github.io/toolhub", "desc": "Launcher personale che raccoglie per categoria gli strumenti digitali che uso ogni giorno, con salvataggio nel browser e sincronizzazione sul repository.", "feats": []}, "splitview": {"name": "SplitView", "url": "https://parentiedoardo.github.io/splitview/", "dom": "parentiedoardo.github.io/splitview", "desc": "Genera uno script per Windows o macOS che apre finestre reali di Chrome disposte a griglia su uno o due monitor, con anteprima e preset esportabili.", "feats": []}};
+  var dlg = document.getElementById('project-dialog');
+  if (!dlg || typeof dlg.showModal !== 'function') return;
+  var $ = function (id) { return document.getElementById(id); };
+  function open(k) {
+    var p = data[k]; if (!p) return false;
+    $('pdlg-title').textContent = p.name;
+    $('pdlg-domain').textContent = p.dom;
+    $('pdlg-desc').textContent = p.desc;
+    $('pdlg-logo').src = 'img/logos/' + k + '.svg';
+    $('pdlg-shot').src = 'img/siti/' + k + '.jpg';
+    $('pdlg-shot').alt = 'Home page di ' + p.name;
+    var ul = $('pdlg-feat'); ul.innerHTML = '';
+    p.feats.forEach(function (f) { var li = document.createElement('li'); li.textContent = f; ul.appendChild(li); });
+    ul.hidden = !p.feats.length;
+    $('pdlg-link').href = p.url;
+    dlg.showModal();
+    return true;
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('dialog')) {
+      if (e.target === dlg || e.target.closest('[data-close]')) dlg.close();
+      return;
+    }
+    var t = e.target.closest('[data-project]');
+    if (t && open(t.getAttribute('data-project'))) e.preventDefault();
   });
 })();
 </script>
