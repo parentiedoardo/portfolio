@@ -230,8 +230,7 @@ img.mark { border-radius: 10px; object-fit: contain; }
 .style-toggle i { width: 14px; height: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
 .style-toggle i::before, .style-toggle i::after { content: ""; background: currentColor; border-radius: 2px; }
 .top-right { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
-html[data-style="bento"] header.top nav { display: none; }
-html[data-style="bento"] .wrap { max-width: 1160px; }
+.wrap { max-width: 1160px; }
 
 /* Bento */
 .bento { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-flow: dense; gap: 14px; padding-block: 36px 56px; }
@@ -403,6 +402,18 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
   .exp-btn span { grid-column: 1; }
   .exp-btn i { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
 }
+
+/* Pulsante torna su */
+.to-top { position: fixed; right: 20px; bottom: 20px; z-index: 50; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--ink); background: var(--ink); color: var(--bg); display: grid; place-items: center; cursor: pointer; box-shadow: 0 8px 24px rgba(10, 14, 24, .25); opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .2s, transform .2s, visibility .2s; }
+.to-top.is-on { opacity: 1; visibility: visible; transform: none; }
+.to-top:hover { transform: translateY(-2px); }
+.to-top:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+[data-b], section[id] { scroll-margin-top: 16px; }
+@media (max-width: 600px) {
+  header.top nav { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; white-space: nowrap; max-width: 100%; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); padding-right: 24px; }
+  header.top nav::-webkit-scrollbar { display: none; }
+  .top-right { min-width: 0; max-width: 100%; }
+  .to-top { right: 14px; bottom: 14px; width: 42px; height: 42px; } }
 </style>
 </head>
 <body>
@@ -781,7 +792,7 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
     <article class="tile t-stat"><b>10+</b><span>anni nel web, dal disegno tecnico al no-code</span></article>
     <article class="tile t-stat t-accent"><b>5</b><span>PWA no-code per processi aziendali</span></article>
 
-    <h2 class="b-label">Su di me</h2>
+    <h2 class="b-label" data-b="su-di-me">Su di me</h2>
     <article class="tile t-wide t-about">
       <p>Sono un Digital Product Developer con base a Milano. Unisco <strong class="hl">UI/UX design</strong>, sviluppo <strong class="hl">no-code/low-code</strong> e <strong class="hl">vibe coding</strong>, <strong class="hl">digital marketing</strong> e <strong class="hl">analisi dei dati</strong> per progettare interfacce, web app aziendali e strumenti su misura che semplificano i processi interni.</p>
       <p>Al design affianco un lato analitico e operativo: strategie di marketing, <strong class="hl">lead generation</strong>, <strong class="hl">web scraping</strong>, analisi dei dati e interfacce personalizzate per <strong class="hl">Power BI</strong>. Lavoro su grandi volumi di dati, come cataloghi commerciali da circa <strong class="hl">30.000 articoli</strong>, curandone struttura, elaborazione e visualizzazione.</p>
@@ -808,7 +819,7 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
       <p class="side-note">In parallelo lancio prodotti miei, come TweakBlock, EnoList, Firmadocumenti e un formattatore di formule matematiche: il mio laboratorio per sperimentare tecnologie e validare idee.</p>
     </article>
 
-    <h2 class="b-label">Progetti</h2>
+    <h2 class="b-label" data-b="progetti">Progetti</h2>
     <a class="tile t-proj t-wide" href="https://tweakblock.com/" data-project="tweakblock">
       <img class="mark" src="img/logos/tweakblock.svg" alt="" width="48" height="48">
       <h3>TweakBlock</h3><p>Editor online per scrivere, verificare e ottimizzare il codice Rich Text delle app Glide, con libreria di componenti pronti.</p><span class="domain">Apri la scheda →</span></a>
@@ -825,7 +836,7 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
       <img class="mark" src="img/logos/splitview.svg" alt="" width="48" height="48">
       <h3>SplitView</h3><p>Finestre di Chrome disposte a griglia su uno o due monitor.</p><span class="domain">Apri la scheda →</span></a>
 
-    <h2 class="b-label">Casi di studio</h2>
+    <h2 class="b-label" data-b="casi-studio">Casi di studio</h2>
     <article class="tile t-case t-wide" data-detail="case-analisi-concorrenza">
       <img src="img/analisi-concorrenza-1-analisi.jpg" alt="Schermata dell'app Analisi concorrenza" width="1440" height="905" loading="lazy">
       <div><span class="eyebrow">Vendite</span><h3>Analisi concorrenza</h3><p>I prezzi dei concorrenti in tasca alla forza vendita, con margine calcolato in automatico.</p><button class="btn" type="button" data-detail="case-analisi-concorrenza">Leggi il caso</button></div>
@@ -840,11 +851,11 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
     </article>
 
     <h2 class="b-label">Profilo</h2>
-    <article class="tile t-wide t-skills">
+    <article class="tile t-wide t-skills" data-b="competenze">
       <h3>Competenze</h3>
       <div class="tags"><span class="chip plain">Figma</span><span class="chip plain">UI/UX</span><span class="chip plain">Glide</span><span class="chip plain">PWA</span><span class="chip plain">Zapier</span><span class="chip plain">Make</span><span class="chip plain">Power BI</span><span class="chip plain">Google Analytics</span><span class="chip plain">Google Ads</span><span class="chip plain">HTML/CSS/JS</span><span class="chip plain">WordPress</span><span class="chip plain">Stripe</span><span class="chip plain">Vercel</span><span class="chip plain">Claude</span><span class="chip plain">ChatGPT</span><span class="chip plain">Base44</span><span class="chip plain">Lovable</span><span class="chip plain">Brevo</span><span class="chip plain">Python</span><span class="chip plain">React</span><span class="chip plain">AutoCAD</span><span class="chip plain">SolidWorks</span><span class="chip plain">KeyShot</span></div>
     </article>
-    <article class="tile t-wide t-exp">
+    <article class="tile t-wide t-exp" data-b="esperienza">
       <h3>Esperienza</h3>
       <ul class="mini">
         <li><button class="exp-btn" type="button" data-detail="exp-0"><time>2022 – oggi</time><span><b>Web designer e No-code developer</b> · SIT S.p.A.</span><i aria-hidden="true">›</i></button></li>
@@ -854,7 +865,7 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
         <li><button class="exp-btn" type="button" data-detail="exp-4"><time>2012 – 2020</time><span><b>Web design e progettazione tecnica</b> · Beginning, I.T.I.D.</span><i aria-hidden="true">›</i></button></li>
       </ul>
     </article>
-    <article class="tile t-edu">
+    <article class="tile t-edu" data-b="formazione">
       <h3>Formazione</h3>
       <ul class="mini plain"><li>Certificazione Glide, livelli 1 e 2</li><li>Java e MySQL, 440 ore · ANT Milano</li><li>Diploma di Perito Meccanico</li></ul>
     </article>
@@ -866,13 +877,14 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
       <h3>Altri progetti</h3>
       <p>Una domanda di brevetto industriale con prototipi in stampa 3D, una criptovaluta creata da zero e una centralina per coltivazioni idroponiche.</p>
     </article>
-    <article class="tile t-full t-contact">
+    <article class="tile t-full t-contact" data-b="contatti">
       <h2>Cerchi qualcuno che unisca design, no-code e marketing? Parliamone.</h2>
       <div class="links"><a class="btn primary" href="https://www.linkedin.com/in/parenti-edoardo" target="_blank" rel="noopener">Scrivimi su LinkedIn</a><a class="btn" href="mailto:parentiedoardo@gmail.com">parentiedoardo@gmail.com</a><a class="btn" href="https://github.com/parentiedoardo" target="_blank" rel="noopener">GitHub</a></div>
     </article>
   </main>
 
   <footer>© 2026 Edoardo Parenti</footer>
+  <button class="to-top" id="to-top" type="button" aria-label="Torna su"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <dialog class="pdlg" id="project-dialog" aria-labelledby="pdlg-title">
     <button class="pdlg-close" type="button" aria-label="Chiudi" data-close>×</button>
     <img class="pdlg-shot" id="pdlg-shot" src="" alt="" width="1440" height="900">
@@ -1089,6 +1101,23 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
     }
     var d = e.target.closest('[data-detail]');
     if (d && open(d.getAttribute('data-detail'))) e.preventDefault();
+  });
+})();
+
+(function () {
+  var btn = document.getElementById('to-top');
+  var root = document.documentElement;
+  function onScroll() { btn.classList.toggle('is-on', window.scrollY > 500); }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  btn.addEventListener('click', function () {
+    var smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: smooth ? 'smooth' : 'auto' });
+  });
+  document.querySelector('header.top nav').addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]'); if (!a) return;
+    if (root.getAttribute('data-style') !== 'bento') return;
+    var el = document.querySelector('[data-b="' + a.getAttribute('href').slice(1) + '"]');
+    if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth' }); }
   });
 })();
 </script>
