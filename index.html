@@ -307,6 +307,29 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
 .pdlg-close { position: absolute; top: 12px; right: 12px; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 1.3rem; line-height: 1; cursor: pointer; display: grid; place-items: center; }
 .pdlg-close:hover { border-color: var(--ink); }
 @media (max-width: 760px) { .project.featured .shot { min-height: 0; height: auto; aspect-ratio: 16 / 10; } .pdlg-body { padding: 20px; } }
+
+/* Su di me */
+.hl { font-weight: 600; color: var(--ink); background: linear-gradient(transparent 58%, var(--accent-soft) 58%); padding: 0 .08em; }
+.about-intro { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; font-size: 1.08rem; line-height: 1.6; margin-bottom: 28px; }
+.about-intro p { margin: 0; }
+.about-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-bottom: 20px; }
+.about-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: grid; gap: 12px; align-content: start; }
+.about-card h3, .t-about-card h3 { font-size: 1.15rem; font-weight: 700; }
+.about-card > p { margin: 0; color: var(--muted); }
+.about-card .hl, .t-about-card .hl { color: var(--ink); }
+.ai-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.ai-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-bottom: 8px; border-bottom: 1px dashed var(--line); font-size: .95rem; }
+.ai-list li:last-child { border-bottom: 0; padding-bottom: 0; }
+.ai-list span { color: var(--muted); font-size: .88rem; text-align: right; }
+.side-note { margin: 0; font-size: .92rem; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 12px; }
+#su-di-me > .more, .t-about .more { font: 600 .9rem var(--f-body); color: var(--accent); text-decoration: none; }
+#su-di-me > .more:hover, .t-about .more:hover { text-decoration: underline; }
+.t-about { grid-column: span 2; justify-content: flex-start; gap: 14px; font-size: 1.02rem; }
+.t-about .more { margin-top: auto; }
+.t-about p { color: var(--ink); line-height: 1.55; }
+.t-about-card .tags { margin-top: auto; }
+@media (max-width: 760px) { .about-intro, .about-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 600px) { .t-about { grid-column: auto; } }
 </style>
 </head>
 <body>
@@ -317,6 +340,7 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
     <span>edoardo parenti</span>
     <div class="top-right">
     <nav aria-label="Sezioni">
+      <a href="#su-di-me">su di me</a>
       <a href="#progetti">progetti</a>
       <a href="#casi-studio">casi di studio</a>
       <a href="#competenze">competenze</a>
@@ -331,7 +355,7 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
   <main id="view-classic" hidden>
   <div class="hero">
    <div class="hero-text">
-    <span class="eyebrow">UI/UX · No-code · Digital marketing</span>
+    <span class="eyebrow">Digital Product Developer · AI &amp; No-Code Solutions</span>
     <h1>Edoardo Parenti<br><span>Prodotti digitali, dall'idea al primo cliente.</span></h1>
     <p class="lead">Web designer, no-code/low-code developer a Milano. Progetto interfacce, app interne e strategie di marketing digitale; sviluppo e lancio prodotti web come TweakBlock, EnoList e Firmadocumenti. Seguo tutto il ciclo, dal design ai dati, fino a pagamenti e automazioni.</p>
     <ul class="facts" aria-label="In sintesi">
@@ -346,6 +370,40 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
    </div>
    <img class="portrait" src="foto-edoardo.jpg" alt="Ritratto di Edoardo Parenti" width="640" height="640">
   </div>
+
+  <section id="su-di-me" aria-labelledby="h-about">
+    <div class="sec-head">
+      <h2 id="h-about">Su di me</h2>
+      <p>Digital Product Developer · AI &amp; No-Code Solutions</p>
+    </div>
+    <div class="about-intro">
+      <p>Sono un Digital Product Developer con base a Milano. Unisco <strong class="hl">UI/UX design</strong>, sviluppo <strong class="hl">no-code/low-code</strong> e <strong class="hl">vibe coding</strong>, <strong class="hl">digital marketing</strong> e <strong class="hl">analisi dei dati</strong> per progettare interfacce, web app aziendali e strumenti su misura che semplificano i processi interni.</p>
+      <p>Al design affianco un lato analitico e operativo: strategie di marketing, <strong class="hl">lead generation</strong>, <strong class="hl">web scraping</strong>, analisi dei dati e interfacce personalizzate per <strong class="hl">Power BI</strong>. Lavoro su grandi volumi di dati, come cataloghi commerciali da circa <strong class="hl">30.000 articoli</strong>, curandone struttura, elaborazione e visualizzazione.</p>
+    </div>
+    <div class="about-grid">
+      <article class="about-card about-ai">
+        <h3>Intelligenza artificiale</h3>
+        <p>Uso l'AI ogni giorno e la studio da autodidatta fin dalle prime versioni di ChatGPT, tra sperimentazione, test e miglioramenti continui. Oggi progetto interfacce e applicazioni che usano le <strong class="hl">API di OpenAI</strong>.</p>
+        <ul class="ai-list"><li><b>Claude</b><span>sviluppo e ragionamento</span></li><li><b>DeepSeek</b><span>attività semplici e rapide</span></li><li><b>Gemini</b><span>generazione di immagini</span></li><li><b>ElevenLabs · Luma AI</b><span>audio e video</span></li></ul>
+      </article>
+      <article class="about-card about-dev">
+        <h3>Sviluppo e piattaforme</h3>
+        <p>Basi di <strong class="hl">HTML, CSS, JavaScript, Java, Python e React</strong>, che uso per personalizzare interfacce, prototipare e sviluppare soluzioni digitali. Conosco i fondamenti di <strong class="hl">cybersecurity</strong>: sicurezza, gestione degli accessi e protezione dei dati.</p>
+        <div class="tags"><span class="chip">Base44</span><span class="chip">Lovable</span><span class="chip">Banani</span><span class="chip">Figma</span><span class="chip">Visual Studio Code</span><span class="chip">CodePen</span><span class="chip">GitHub</span><span class="chip">Vercel</span><span class="chip">Cloudflare</span></div>
+      </article>
+      <article class="about-card about-mkt">
+        <h3>Email marketing e automazioni</h3>
+        <p>Seguo l'email marketing dall'inizio alla fine: registrazione del dominio, <strong class="hl">record DNS</strong>, <strong class="hl">autenticazione del mittente</strong> e configurazione delle piattaforme, fino a campagne, <strong class="hl">automazioni</strong>, lead generation e prospecting.</p>
+        <div class="tags"><span class="chip">Brevo</span><span class="chip">GetResponse</span><span class="chip">Mailchimp</span><span class="chip">Snov.io</span></div>
+      </article>
+      <article class="about-card about-app">
+        <h3>Il mio approccio</h3>
+        <p>Seguo i progetti <strong class="hl">a 360°</strong>: dal problema e dai requisiti alla scelta delle tecnologie, dal design UX/UI all'architettura dei dati, fino a sviluppo, integrazioni, pagamenti e automazioni. L'obiettivo è trasformare un'esigenza concreta in uno strumento che funziona, con soluzioni pratiche, scalabili e sostenibili.</p>
+        <p class="side-note">In parallelo lancio prodotti miei, come TweakBlock, EnoList, Firmadocumenti e un formattatore di formule matematiche: il mio laboratorio per sperimentare tecnologie e validare idee.</p>
+      </article>
+    </div>
+    <a class="more" href="https://parentiedoardo.github.io/toolhub/" target="_blank" rel="noopener">Tutti gli strumenti che uso sono raccolti nel mio ToolHub <span aria-hidden="true">↗</span></a>
+  </section>
 
   <section id="progetti" aria-labelledby="h-progetti">
     <div class="sec-head">
@@ -538,27 +596,27 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
       <div>
         <h3>Design e UI/UX</h3>
         <p>Interfacce per siti, e-commerce B2B e app.</p>
-        <div class="tags"><span class="chip plain">Figma</span><span class="chip plain">Adobe Creative Suite</span><span class="chip plain">Lucidchart</span><span class="chip plain">Canva</span><span class="chip plain">WordPress</span></div>
+        <div class="tags"><span class="chip plain">Figma</span><span class="chip plain">Adobe Creative Suite</span><span class="chip plain">Banani</span><span class="chip plain">Lucidchart</span><span class="chip plain">Canva</span><span class="chip plain">WordPress</span></div>
       </div>
       <div>
         <h3>No-code e automazioni</h3>
         <p>App e flussi che tolgono lavoro manuale ai processi.</p>
-        <div class="tags"><span class="chip plain">Glide</span><span class="chip plain">PWA</span><span class="chip plain">Zapier</span><span class="chip plain">Make</span><span class="chip plain">GetResponse</span></div>
+        <div class="tags"><span class="chip plain">Glide</span><span class="chip plain">PWA</span><span class="chip plain">Zapier</span><span class="chip plain">Make</span><span class="chip plain">Base44</span><span class="chip plain">Lovable</span></div>
       </div>
       <div>
         <h3>Marketing e dati</h3>
         <p>Campagne, analisi e decisioni basate sui numeri.</p>
-        <div class="tags"><span class="chip plain">Power BI</span><span class="chip plain">Google Analytics</span><span class="chip plain">Google Ads</span><span class="chip plain">Keyword Planner</span><span class="chip plain">Hotjar</span><span class="chip plain">Mailchimp</span></div>
+        <div class="tags"><span class="chip plain">Power BI</span><span class="chip plain">Google Analytics</span><span class="chip plain">Google Ads</span><span class="chip plain">Keyword Planner</span><span class="chip plain">Hotjar</span><span class="chip plain">Mailchimp</span><span class="chip plain">Brevo</span><span class="chip plain">GetResponse</span><span class="chip plain">Snov.io</span></div>
       </div>
       <div>
         <h3>Sviluppo e prodotto</h3>
         <p>Web app in produzione, con pagamenti ed email.</p>
-        <div class="tags"><span class="chip plain">HTML/CSS/JS</span><span class="chip plain">Java + MySQL</span><span class="chip plain">GitHub</span><span class="chip plain">Vercel</span><span class="chip plain">Cloudflare</span><span class="chip plain">Stripe</span><span class="chip plain">Resend</span></div>
+        <div class="tags"><span class="chip plain">HTML/CSS/JS</span><span class="chip plain">React</span><span class="chip plain">Python</span><span class="chip plain">Java + MySQL</span><span class="chip plain">VS Code</span><span class="chip plain">CodePen</span><span class="chip plain">GitHub</span><span class="chip plain">Vercel</span><span class="chip plain">Cloudflare</span><span class="chip plain">Stripe</span><span class="chip plain">Resend</span></div>
       </div>
       <div>
         <h3>AI</h3>
         <p>Nella strategia aziendale e dentro i prodotti.</p>
-        <div class="tags"><span class="chip plain">Claude</span><span class="chip plain">ChatGPT</span><span class="chip plain">Midjourney</span><span class="chip plain">ElevenLabs</span><span class="chip plain">Runway</span></div>
+        <div class="tags"><span class="chip plain">Claude</span><span class="chip plain">OpenAI API</span><span class="chip plain">ChatGPT</span><span class="chip plain">DeepSeek</span><span class="chip plain">Gemini</span><span class="chip plain">Midjourney</span><span class="chip plain">ElevenLabs</span><span class="chip plain">Luma AI</span><span class="chip plain">Runway</span></div>
       </div>
       <div>
         <h3>3D e progettazione</h3>
@@ -688,7 +746,7 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
 
   <main id="view-bento" class="bento" aria-label="Portfolio in stile bento">
     <article class="tile t-intro">
-      <span class="eyebrow">UI/UX · No-code · Digital marketing</span>
+      <span class="eyebrow">Digital Product Developer · AI &amp; No-Code Solutions</span>
       <h1 class="name">Edoardo Parenti<br><span>Prodotti digitali, dall'idea al primo cliente.</span></h1>
       <p>Web designer, no-code/low-code developer a Milano. Progetto interfacce, app interne e strategie di marketing digitale; sviluppo e lancio prodotti web come TweakBlock, EnoList e Firmadocumenti. Seguo tutto il ciclo, dal design ai dati, fino a pagamenti e automazioni.</p>
       <div class="cta"><a class="btn primary" href="https://www.linkedin.com/in/parenti-edoardo" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="mailto:parentiedoardo@gmail.com">Scrivimi</a></div>
@@ -696,6 +754,33 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
     <figure class="tile t-photo"><img src="foto-edoardo.jpg" alt="Ritratto di Edoardo Parenti" width="640" height="640"></figure>
     <article class="tile t-stat"><b>10+</b><span>anni nel web, dal disegno tecnico al no-code</span></article>
     <article class="tile t-stat t-accent"><b>5</b><span>PWA no-code per processi aziendali</span></article>
+
+    <h2 class="b-label">Su di me</h2>
+    <article class="tile t-wide t-about">
+      <p>Sono un Digital Product Developer con base a Milano. Unisco <strong class="hl">UI/UX design</strong>, sviluppo <strong class="hl">no-code/low-code</strong> e <strong class="hl">vibe coding</strong>, <strong class="hl">digital marketing</strong> e <strong class="hl">analisi dei dati</strong> per progettare interfacce, web app aziendali e strumenti su misura che semplificano i processi interni.</p>
+      <p>Al design affianco un lato analitico e operativo: strategie di marketing, <strong class="hl">lead generation</strong>, <strong class="hl">web scraping</strong>, analisi dei dati e interfacce personalizzate per <strong class="hl">Power BI</strong>. Lavoro su grandi volumi di dati, come cataloghi commerciali da circa <strong class="hl">30.000 articoli</strong>, curandone struttura, elaborazione e visualizzazione.</p>
+      <a class="more" href="https://parentiedoardo.github.io/toolhub/" target="_blank" rel="noopener">Tutti gli strumenti che uso sono raccolti nel mio ToolHub <span aria-hidden="true">↗</span></a>
+    </article>
+    <article class="tile t-about-card about-ai">
+      <h3>Intelligenza artificiale</h3>
+      <p>Uso l'AI ogni giorno e la studio da autodidatta fin dalle prime versioni di ChatGPT, tra sperimentazione, test e miglioramenti continui. Oggi progetto interfacce e applicazioni che usano le <strong class="hl">API di OpenAI</strong>.</p>
+      <ul class="ai-list"><li><b>Claude</b><span>sviluppo e ragionamento</span></li><li><b>DeepSeek</b><span>attività semplici e rapide</span></li><li><b>Gemini</b><span>generazione di immagini</span></li><li><b>ElevenLabs · Luma AI</b><span>audio e video</span></li></ul>
+    </article>
+    <article class="tile t-about-card about-mkt">
+      <h3>Email marketing e automazioni</h3>
+      <p>Seguo l'email marketing dall'inizio alla fine: registrazione del dominio, <strong class="hl">record DNS</strong>, <strong class="hl">autenticazione del mittente</strong> e configurazione delle piattaforme, fino a campagne, <strong class="hl">automazioni</strong>, lead generation e prospecting.</p>
+      <div class="tags"><span class="chip">Brevo</span><span class="chip">GetResponse</span><span class="chip">Mailchimp</span><span class="chip">Snov.io</span></div>
+    </article>
+    <article class="tile t-about-card about-dev t-wide">
+      <h3>Sviluppo e piattaforme</h3>
+      <p>Basi di <strong class="hl">HTML, CSS, JavaScript, Java, Python e React</strong>, che uso per personalizzare interfacce, prototipare e sviluppare soluzioni digitali. Conosco i fondamenti di <strong class="hl">cybersecurity</strong>: sicurezza, gestione degli accessi e protezione dei dati.</p>
+      <div class="tags"><span class="chip">Base44</span><span class="chip">Lovable</span><span class="chip">Banani</span><span class="chip">Figma</span><span class="chip">Visual Studio Code</span><span class="chip">CodePen</span><span class="chip">GitHub</span><span class="chip">Vercel</span><span class="chip">Cloudflare</span></div>
+    </article>
+    <article class="tile t-about-card about-app t-wide">
+      <h3>Il mio approccio</h3>
+      <p>Seguo i progetti <strong class="hl">a 360°</strong>: dal problema e dai requisiti alla scelta delle tecnologie, dal design UX/UI all'architettura dei dati, fino a sviluppo, integrazioni, pagamenti e automazioni. L'obiettivo è trasformare un'esigenza concreta in uno strumento che funziona, con soluzioni pratiche, scalabili e sostenibili.</p>
+      <p class="side-note">In parallelo lancio prodotti miei, come TweakBlock, EnoList, Firmadocumenti e un formattatore di formule matematiche: il mio laboratorio per sperimentare tecnologie e validare idee.</p>
+    </article>
 
     <h2 class="b-label">Progetti</h2>
     <a class="tile t-proj t-wide" href="https://tweakblock.com/" data-project="tweakblock">
@@ -731,7 +816,7 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
     <h2 class="b-label">Profilo</h2>
     <article class="tile t-wide t-skills">
       <h3>Competenze</h3>
-      <div class="tags"><span class="chip plain">Figma</span><span class="chip plain">UI/UX</span><span class="chip plain">Glide</span><span class="chip plain">PWA</span><span class="chip plain">Zapier</span><span class="chip plain">Make</span><span class="chip plain">Power BI</span><span class="chip plain">Google Analytics</span><span class="chip plain">Google Ads</span><span class="chip plain">HTML/CSS/JS</span><span class="chip plain">WordPress</span><span class="chip plain">Stripe</span><span class="chip plain">Vercel</span><span class="chip plain">Claude</span><span class="chip plain">ChatGPT</span><span class="chip plain">AutoCAD</span><span class="chip plain">SolidWorks</span><span class="chip plain">KeyShot</span></div>
+      <div class="tags"><span class="chip plain">Figma</span><span class="chip plain">UI/UX</span><span class="chip plain">Glide</span><span class="chip plain">PWA</span><span class="chip plain">Zapier</span><span class="chip plain">Make</span><span class="chip plain">Power BI</span><span class="chip plain">Google Analytics</span><span class="chip plain">Google Ads</span><span class="chip plain">HTML/CSS/JS</span><span class="chip plain">WordPress</span><span class="chip plain">Stripe</span><span class="chip plain">Vercel</span><span class="chip plain">Claude</span><span class="chip plain">ChatGPT</span><span class="chip plain">Base44</span><span class="chip plain">Lovable</span><span class="chip plain">Brevo</span><span class="chip plain">Python</span><span class="chip plain">React</span><span class="chip plain">AutoCAD</span><span class="chip plain">SolidWorks</span><span class="chip plain">KeyShot</span></div>
     </article>
     <article class="tile t-wide t-exp">
       <h3>Esperienza</h3>
