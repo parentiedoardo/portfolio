@@ -330,6 +330,79 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
 .t-about-card .tags { margin-top: auto; }
 @media (max-width: 760px) { .about-intro, .about-grid { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 600px) { .t-about { grid-column: auto; } }
+
+/* Foto nascosta fino al passaggio del mouse */
+.reveal { position: relative; overflow: hidden; cursor: pointer; }
+.reveal::after { content: "foto"; position: absolute; inset: 0; display: grid; place-items: center; background: #000; color: #fff; font: 500 .95rem var(--f-mono); letter-spacing: .12em; transition: opacity .35s ease; border-radius: inherit; }
+.reveal:hover::after, .reveal:focus-visible::after, .reveal.is-revealed::after { opacity: 0; }
+.reveal:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.portrait-wrap { border-radius: 18px; align-self: center; }
+.portrait-wrap .portrait { display: block; border: 0; }
+@media (max-width: 760px) {
+  .portrait-wrap { order: -1; width: 8.5rem; border-radius: 50%; }
+  .portrait-wrap .portrait { width: 100%; }
+}
+
+/* Casi di studio come schede compatte */
+.case-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.case-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; transition: border-color .2s; }
+.case-card:hover { border-color: var(--ink); }
+.case-thumb { width: 100%; height: 150px; object-fit: cover; object-position: top left; display: block; border-bottom: 1px solid var(--line); }
+.case-card-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 6px; align-items: flex-start; flex: 1; }
+.case-card-body h3 { font-size: 1.2rem; font-weight: 700; }
+.case-card-body p { margin: 0; color: var(--muted); font-size: .95rem; }
+.case-card .more { margin-top: auto; padding: 8px 0 0; background: none; border: 0; cursor: pointer; font: 600 .85rem var(--f-body); color: var(--accent); }
+.case-card .more:hover { text-decoration: underline; }
+[data-detail] { cursor: pointer; }
+.bento .t-case { grid-row: auto; }
+.bento .t-case img, .bento .t-case.t-wide img { aspect-ratio: auto; height: 140px; object-position: top left; }
+@media (max-width: 960px) { .case-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .case-grid { grid-template-columns: minmax(0, 1fr); } .case-thumb, .bento .t-case img, .bento .t-case.t-wide img { height: 130px; } }
+
+/* Esperienze cliccabili (bento) */
+.exp-btn { all: unset; box-sizing: border-box; width: 100%; display: grid; grid-template-columns: 7.5rem minmax(0, 1fr) auto; gap: 12px; align-items: baseline; padding: 7px 10px; margin: -7px -10px; border-radius: 10px; cursor: pointer; color: var(--ink); font-size: .95rem; }
+.exp-btn:hover { background: var(--bg); }
+.exp-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; }
+.exp-btn i { font-style: normal; color: var(--muted); font-size: 1.2rem; line-height: 1; }
+.t-exp .mini { gap: 14px; }
+.t-exp .mini li { display: block; }
+
+/* Overlay dettaglio */
+.ddlg { width: min(820px, calc(100vw - 32px)); }
+.ddlg-body { display: grid; }
+.d-hero { margin: 0; background: var(--bg); border-bottom: 1px solid var(--line); }
+.d-hero img { display: block; width: 100%; height: auto; max-height: 52vh; object-fit: contain; background: var(--bg); }
+.d-hero figcaption { padding: 10px 26px; font-size: .88rem; color: var(--muted); border-top: 1px solid var(--line); }
+.d-thumbs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 14px 26px 0; }
+.d-thumb { padding: 0; border: 2px solid transparent; border-radius: 10px; overflow: hidden; cursor: pointer; background: var(--bg); }
+.d-thumb img { display: block; width: 100%; height: 70px; object-fit: cover; object-position: top left; }
+.d-thumb.is-on { border-color: var(--accent); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.ddlg-text { padding: 22px 26px 26px; display: grid; gap: 14px; }
+.ddlg-text .d-title { font-size: 1.6rem; font-weight: 700; letter-spacing: -.02em; margin-top: -6px; }
+.ddlg-text .d-tag { margin: -6px 0 0; color: var(--muted); }
+.ddlg-text .case-text { gap: 16px; }
+.d-tools h4 { margin: 0 0 8px; font: 500 .75rem var(--f-mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.d-role { display: grid; gap: 4px; }
+.d-role + .d-role { border-top: 1px solid var(--line); padding-top: 16px; }
+.d-role time { font-family: var(--f-mono); font-size: .85rem; color: var(--muted); }
+.d-role h3 { font-size: 1.35rem; font-weight: 700; letter-spacing: -.01em; }
+.d-role .org { color: var(--muted); }
+.d-role p { margin: 6px 0 0; }
+.d-role .feat { margin-top: 8px; }
+.ddlg:has(.d-role) { width: min(640px, calc(100vw - 32px)); }
+.ddlg:has(.d-role) .ddlg-text { padding-top: 28px; padding-right: 64px; }
+@media (max-width: 600px) {
+  .pdlg { width: calc(100vw - 20px); max-height: calc(100dvh - 20px); border-radius: 16px; }
+  .ddlg-text, .pdlg-body { padding: 18px; }
+  .d-thumbs { padding: 12px 18px 0; gap: 8px; }
+  .d-thumb img { height: 54px; }
+  .d-hero figcaption { padding: 8px 18px; }
+  .exp-btn { grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; }
+  .exp-btn time { grid-column: 1; }
+  .exp-btn span { grid-column: 1; }
+  .exp-btn i { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+}
 </style>
 </head>
 <body>
@@ -368,7 +441,7 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
       <a class="btn" href="https://www.linkedin.com/in/parenti-edoardo" target="_blank" rel="noopener">LinkedIn</a>
     </div>
    </div>
-   <img class="portrait" src="foto-edoardo.jpg" alt="Ritratto di Edoardo Parenti" width="640" height="640">
+   <div class="portrait-wrap reveal" tabindex="0"><img class="portrait" src="foto-edoardo.jpg" alt="Ritratto di Edoardo Parenti" width="640" height="640"></div>
   </div>
 
   <section id="su-di-me" aria-labelledby="h-about">
@@ -507,82 +580,35 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
       <p>Web app interne no-code che ho progettato e sviluppato in Glide per un'azienda industriale B2B con filiali in diversi paesi.</p>
     </div>
 
-    <article class="case-block" id="analisi-concorrenza" aria-labelledby="h-c1">
-      <div class="case-head"><span class="eyebrow">Vendite</span><h3 id="h-c1">Analisi concorrenza</h3><p>I prezzi dei concorrenti in tasca alla forza vendita.</p></div>
-      <div class="case">
-        <div class="case-text">
-          <div><h4>Il problema</h4><p>Gli agenti dovevano capire in pochi secondi se il prezzo proposto da un concorrente era davvero più basso e quanto margine restava per rispondere. Listini e sconti dei concorrenti erano sparsi in file diversi, difficili da consultare dal cliente.</p></div>
-          <div><h4>La soluzione</h4>
-            <ul class="feat">
-              <li>Ricerca di un articolo anche partendo dal codice di un concorrente, con il confronto immediato tra listino, sconto e prezzo netto</li>
-              <li>Segnalazione di un prezzo visto sul campo, con calcolo automatico di scostamento, sconto effettivo e margine</li>
-              <li>Una dashboard per il marketing con le segnalazioni, i prodotti in sovrapprezzo, la copertura dei listini e gli avvisi di aggiornamento</li>
-            </ul></div>
-          <div><h4>Il mio ruolo</h4><p>Analisi dei bisogni con le vendite, progettazione UI/UX, modello dati e formule, sviluppo in Glide e formazione degli utenti.</p></div>
-        </div>
-        <aside class="case-side" aria-label="Strumenti di Analisi concorrenza">
-          <h4>Strumenti</h4>
-          <div class="tags"><span class="chip plain">Glide</span><span class="chip plain">UI/UX</span><span class="chip plain">Data model</span></div>
-        </aside>
-      </div>
-      <div class="shots">
-        <figure class="shot wide"><img src="img/analisi-concorrenza-1-analisi.jpg" alt="Schermata Analisi: tabella e barre che confrontano listino, sconto e prezzo netto di un articolo con tre concorrenti" width="1440" height="905" loading="lazy"><figcaption>Analisi di un articolo: listino, sconto e prezzo netto a confronto con i concorrenti.</figcaption></figure>
-        <figure class="shot"><img src="img/analisi-concorrenza-2-segnalazione.jpg" alt="Schermata Segnalazione: grafico dei prezzi scontati, scostamento dal prezzo segnalato e dettagli della segnalazione" width="1440" height="1044" loading="lazy"><figcaption>Segnalazione di un prezzo dal campo, con il margine calcolato in automatico.</figcaption></figure>
-        <figure class="shot"><img src="img/analisi-concorrenza-3-dati.jpg" alt="Schermata Dati: statistiche su segnalazioni, utenti e articoli codificati per concorrente" width="1440" height="1260" loading="lazy"><figcaption>Dashboard per il marketing: segnalazioni, utenti e copertura dei listini.</figcaption></figure>
+    <div class="case-grid">
+    <article class="case-card" id="analisi-concorrenza" data-detail="case-analisi-concorrenza">
+      <img class="case-thumb" src="img/analisi-concorrenza-1-analisi.jpg" alt="" width="1440" height="905" loading="lazy">
+      <div class="case-card-body">
+        <span class="eyebrow">Vendite</span>
+        <h3>Analisi concorrenza</h3>
+        <p>I prezzi dei concorrenti in tasca alla forza vendita.</p>
+        <button class="more" type="button" data-detail="case-analisi-concorrenza">Apri il caso <span aria-hidden="true">→</span></button>
       </div>
     </article>
-
-    <article class="case-block" id="projects-management" aria-labelledby="h-c2">
-      <div class="case-head"><span class="eyebrow">Vendite internazionali</span><h3 id="h-c2">Projects Management</h3><p>Tutti i progetti dei clienti, di tutte le filiali, in un unico posto.</p></div>
-      <div class="case">
-        <div class="case-text">
-          <div><h4>Il problema</h4><p>Le filiali seguivano progetti con i clienti in paesi diversi, ognuna con i propri file. Mancava una visione d'insieme su quali prodotti venivano proposti, in quali settori e con quali opportunità, e le esperienze di una filiale non arrivavano alle altre.</p></div>
-          <div><h4>La soluzione</h4>
-            <ul class="feat">
-              <li>Una dashboard con i progetti per linea di prodotto, settore di applicazione e paese, con mappa e ultimi inserimenti</li>
-              <li>Una scheda per ogni progetto con descrizione, foto, prodotti quotati, concorrenti, vantaggi della nostra soluzione e commenti</li>
-              <li>Dati riservati (cliente, mercato potenziale) visibili solo ai responsabili di filiale e agli amministratori</li>
-              <li>Un catalogo delle linee di prodotto con l'elenco di tutti i prodotti quotati nei progetti</li>
-            </ul></div>
-          <div><h4>Il mio ruolo</h4><p>Progettazione della struttura dati e dei permessi per ruolo, UI/UX, sviluppo in Glide e messa in uso nelle filiali estere.</p></div>
-        </div>
-        <aside class="case-side" aria-label="Strumenti di Projects Management">
-          <h4>Strumenti</h4>
-          <div class="tags"><span class="chip plain">Glide</span><span class="chip plain">Mappe</span><span class="chip plain">Ruoli e permessi</span></div>
-        </aside>
-      </div>
-      <div class="shots">
-        <figure class="shot wide"><img src="img/projects-1-dashboard.jpg" alt="Dashboard: grafici dei progetti per linea di prodotto e per settore, ultimi progetti e progetti per paese" width="1440" height="1371" loading="lazy"><figcaption>Dashboard: progetti per linea di prodotto, settore e paese.</figcaption></figure>
-        <figure class="shot"><img src="img/projects-2-prodotti.jpg" alt="Catalogo delle linee di prodotto e tabella dei prodotti quotati nei progetti" width="1440" height="901" loading="lazy"><figcaption>Linee di prodotto e prodotti quotati nei progetti.</figcaption></figure>
-        <figure class="shot"><img src="img/projects-3-dettaglio.jpg" alt="Scheda di un progetto con descrizione, informazioni e box dei dati riservati" width="1440" height="898" loading="lazy"><figcaption>Scheda progetto, con i dati riservati visibili solo ai responsabili.</figcaption></figure>
+    <article class="case-card" id="projects-management" data-detail="case-projects-management">
+      <img class="case-thumb" src="img/projects-1-dashboard.jpg" alt="" width="1440" height="1371" loading="lazy">
+      <div class="case-card-body">
+        <span class="eyebrow">Vendite internazionali</span>
+        <h3>Projects Management</h3>
+        <p>Tutti i progetti dei clienti, di tutte le filiali, in un unico posto.</p>
+        <button class="more" type="button" data-detail="case-projects-management">Apri il caso <span aria-hidden="true">→</span></button>
       </div>
     </article>
-
-    <article class="case-block" id="marketing-hub" aria-labelledby="h-c3">
-      <div class="case-head"><span class="eyebrow">Marketing</span><h3 id="h-c3">Marketing Hub</h3><p>Un piano di comunicazione unico per la sede e tutte le filiali.</p></div>
-      <div class="case">
-        <div class="case-text">
-          <div><h4>Il problema</h4><p>Sede e filiali pubblicavano su LinkedIn ognuna per conto proprio, con messaggi e tempi diversi. Le idee per nuovi contenuti si perdevano nelle email e mancava un calendario condiviso.</p></div>
-          <div><h4>La soluzione</h4>
-            <ul class="feat">
-              <li>Un hub dove ogni sede propone contenuti (prodotti, casi di studio, eventi) con testo, immagini e file</li>
-              <li>Un flusso di approvazione con stato, data di pubblicazione e calendario condiviso</li>
-              <li>Spunti per nuovi post con l'AI, a partire da un prompt guidato sullo stile dei post già pubblicati</li>
-              <li>Statistiche sui post pubblicati per categoria, per bilanciare il piano editoriale</li>
-            </ul></div>
-          <div><h4>Il mio ruolo</h4><p>Ideazione del processo editoriale, progettazione e sviluppo in Glide, integrazione dell'AI nel flusso di lavoro e coordinamento con le filiali.</p></div>
-        </div>
-        <aside class="case-side" aria-label="Strumenti di Marketing Hub">
-          <h4>Strumenti</h4>
-          <div class="tags"><span class="chip plain">Glide</span><span class="chip plain">AI</span><span class="chip plain">LinkedIn</span><span class="chip plain">Calendario</span></div>
-        </aside>
-      </div>
-      <div class="shots">
-        <figure class="shot wide"><img src="img/marketing-hub-2-proposte.jpg" alt="Proposte di contenuti da approvare, area AI per gli spunti e statistiche dei post per categoria" width="1440" height="938" loading="lazy"><figcaption>Proposte da approvare, spunti con l'AI e statistiche per categoria.</figcaption></figure>
-        <figure class="shot"><img src="img/marketing-hub-1-home.jpg" alt="Home del Marketing Hub con gli obiettivi e la rete di sedi" width="1440" height="812" loading="lazy"><figcaption>La home: obiettivi del piano e rete delle sedi.</figcaption></figure>
-        <figure class="shot"><img src="img/marketing-hub-3-post.jpg" alt="Scheda di un post con stato, data, testo e calendario del mese" width="1440" height="762" loading="lazy"><figcaption>Scheda di un post con stato, data e calendario condiviso.</figcaption></figure>
+    <article class="case-card" id="marketing-hub" data-detail="case-marketing-hub">
+      <img class="case-thumb" src="img/marketing-hub-2-proposte.jpg" alt="" width="1440" height="938" loading="lazy">
+      <div class="case-card-body">
+        <span class="eyebrow">Marketing</span>
+        <h3>Marketing Hub</h3>
+        <p>Un piano di comunicazione unico per la sede e tutte le filiali.</p>
+        <button class="more" type="button" data-detail="case-marketing-hub">Apri il caso <span aria-hidden="true">→</span></button>
       </div>
     </article>
+    </div>
 
     <p class="note">Le schermate sono ricostruite con nuovi colori e dati di esempio: aziende, prodotti, codici, prezzi e persone non sono reali.</p>
   </section>
@@ -751,7 +777,7 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
       <p>Web designer, no-code/low-code developer a Milano. Progetto interfacce, app interne e strategie di marketing digitale; sviluppo e lancio prodotti web come TweakBlock, EnoList e Firmadocumenti. Seguo tutto il ciclo, dal design ai dati, fino a pagamenti e automazioni.</p>
       <div class="cta"><a class="btn primary" href="https://www.linkedin.com/in/parenti-edoardo" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="mailto:parentiedoardo@gmail.com">Scrivimi</a></div>
     </article>
-    <figure class="tile t-photo"><img src="foto-edoardo.jpg" alt="Ritratto di Edoardo Parenti" width="640" height="640"></figure>
+    <figure class="tile t-photo reveal" tabindex="0"><img src="foto-edoardo.jpg" alt="Ritratto di Edoardo Parenti" width="640" height="640"></figure>
     <article class="tile t-stat"><b>10+</b><span>anni nel web, dal disegno tecnico al no-code</span></article>
     <article class="tile t-stat t-accent"><b>5</b><span>PWA no-code per processi aziendali</span></article>
 
@@ -800,17 +826,17 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
       <h3>SplitView</h3><p>Finestre di Chrome disposte a griglia su uno o due monitor.</p><span class="domain">Apri la scheda →</span></a>
 
     <h2 class="b-label">Casi di studio</h2>
-    <article class="tile t-case t-wide">
+    <article class="tile t-case t-wide" data-detail="case-analisi-concorrenza">
       <img src="img/analisi-concorrenza-1-analisi.jpg" alt="Schermata dell'app Analisi concorrenza" width="1440" height="905" loading="lazy">
-      <div><span class="eyebrow">Vendite</span><h3>Analisi concorrenza</h3><p>I prezzi dei concorrenti in tasca alla forza vendita, con margine calcolato in automatico.</p><button class="btn" type="button" data-goto="analisi-concorrenza">Leggi il caso</button></div>
+      <div><span class="eyebrow">Vendite</span><h3>Analisi concorrenza</h3><p>I prezzi dei concorrenti in tasca alla forza vendita, con margine calcolato in automatico.</p><button class="btn" type="button" data-detail="case-analisi-concorrenza">Leggi il caso</button></div>
     </article>
-    <article class="tile t-case">
+    <article class="tile t-case" data-detail="case-projects-management">
       <img src="img/projects-1-dashboard.jpg" alt="Schermata dell'app Projects Management" width="1440" height="1371" loading="lazy">
-      <div><span class="eyebrow">Vendite internazionali</span><h3>Projects Management</h3><p>I progetti di tutte le filiali in un unico posto.</p><button class="btn" type="button" data-goto="projects-management">Leggi il caso</button></div>
+      <div><span class="eyebrow">Vendite internazionali</span><h3>Projects Management</h3><p>I progetti di tutte le filiali in un unico posto.</p><button class="btn" type="button" data-detail="case-projects-management">Leggi il caso</button></div>
     </article>
-    <article class="tile t-case">
+    <article class="tile t-case" data-detail="case-marketing-hub">
       <img src="img/marketing-hub-2-proposte.jpg" alt="Schermata dell'app Marketing Hub" width="1440" height="938" loading="lazy">
-      <div><span class="eyebrow">Marketing</span><h3>Marketing Hub</h3><p>Un piano LinkedIn unico per sede e filiali, con spunti dall'AI.</p><button class="btn" type="button" data-goto="marketing-hub">Leggi il caso</button></div>
+      <div><span class="eyebrow">Marketing</span><h3>Marketing Hub</h3><p>Un piano LinkedIn unico per sede e filiali, con spunti dall'AI.</p><button class="btn" type="button" data-detail="case-marketing-hub">Leggi il caso</button></div>
     </article>
 
     <h2 class="b-label">Profilo</h2>
@@ -821,11 +847,11 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
     <article class="tile t-wide t-exp">
       <h3>Esperienza</h3>
       <ul class="mini">
-        <li><time>2022 – oggi</time><span><b>Web designer e No-code developer</b> · SIT S.p.A.</span></li>
-        <li><time>2026 – oggi</time><span><b>Fondatore</b> · EnoList, Firmadocumenti, TweakBlock</span></li>
-        <li><time>2019 – oggi</time><span><b>Co-fondatore e Project manager</b> · Customeasy</span></li>
-        <li><time>2018 – oggi</time><span><b>Consulente IT</b> · Freelance</span></li>
-        <li><time>2012 – 2020</time><span><b>Web design e progettazione tecnica</b> · Beginning, I.T.I.D.</span></li>
+        <li><button class="exp-btn" type="button" data-detail="exp-0"><time>2022 – oggi</time><span><b>Web designer e No-code developer</b> · SIT S.p.A.</span><i aria-hidden="true">›</i></button></li>
+        <li><button class="exp-btn" type="button" data-detail="exp-1"><time>2026 – oggi</time><span><b>Fondatore</b> · EnoList, Firmadocumenti, TweakBlock</span><i aria-hidden="true">›</i></button></li>
+        <li><button class="exp-btn" type="button" data-detail="exp-2"><time>2019 – oggi</time><span><b>Co-fondatore e Project manager</b> · Customeasy</span><i aria-hidden="true">›</i></button></li>
+        <li><button class="exp-btn" type="button" data-detail="exp-3"><time>2018 – oggi</time><span><b>Consulente IT</b> · Freelance</span><i aria-hidden="true">›</i></button></li>
+        <li><button class="exp-btn" type="button" data-detail="exp-4"><time>2012 – 2020</time><span><b>Web design e progettazione tecnica</b> · Beginning, I.T.I.D.</span><i aria-hidden="true">›</i></button></li>
       </ul>
     </article>
     <article class="tile t-edu">
@@ -857,6 +883,121 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
       <div class="pdlg-actions"><a class="btn primary" id="pdlg-link" href="#" target="_blank" rel="noopener">Vai al sito <span aria-hidden="true">↗</span></a><button class="btn" type="button" data-close>Chiudi</button></div>
     </div>
   </dialog>
+  <dialog class="pdlg ddlg" id="detail-dialog" aria-label="Dettaglio">
+    <button class="pdlg-close" type="button" aria-label="Chiudi" data-close>×</button>
+    <div class="ddlg-body" id="ddlg-body"></div>
+  </dialog>
+<template id="d-case-analisi-concorrenza">
+  <figure class="d-hero"><a href="img/analisi-concorrenza-1-analisi.jpg" target="_blank" rel="noopener" class="d-hero-link"><img class="d-hero-img" src="img/analisi-concorrenza-1-analisi.jpg" alt="Schermata Analisi: tabella e barre che confrontano listino, sconto e prezzo netto di un articolo con tre concorrenti" width="1440" height="905"></a><figcaption class="d-hero-cap">Analisi di un articolo: listino, sconto e prezzo netto a confronto con i concorrenti.</figcaption></figure>
+  <div class="d-thumbs"><button type="button" class="d-thumb is-on" data-src="img/analisi-concorrenza-1-analisi.jpg" data-alt="Schermata Analisi: tabella e barre che confrontano listino, sconto e prezzo netto di un articolo con tre concorrenti" data-cap="Analisi di un articolo: listino, sconto e prezzo netto a confronto con i concorrenti."><img src="img/analisi-concorrenza-1-analisi.jpg" alt="" width="1440" height="905" loading="lazy"><span class="sr">Mostra: Analisi di un articolo: listino, sconto e prezzo netto a confronto con i concorrenti.</span></button><button type="button" class="d-thumb" data-src="img/analisi-concorrenza-2-segnalazione.jpg" data-alt="Schermata Segnalazione: grafico dei prezzi scontati, scostamento dal prezzo segnalato e dettagli della segnalazione" data-cap="Segnalazione di un prezzo dal campo, con il margine calcolato in automatico."><img src="img/analisi-concorrenza-2-segnalazione.jpg" alt="" width="1440" height="1044" loading="lazy"><span class="sr">Mostra: Segnalazione di un prezzo dal campo, con il margine calcolato in automatico.</span></button><button type="button" class="d-thumb" data-src="img/analisi-concorrenza-3-dati.jpg" data-alt="Schermata Dati: statistiche su segnalazioni, utenti e articoli codificati per concorrente" data-cap="Dashboard per il marketing: segnalazioni, utenti e copertura dei listini."><img src="img/analisi-concorrenza-3-dati.jpg" alt="" width="1440" height="1260" loading="lazy"><span class="sr">Mostra: Dashboard per il marketing: segnalazioni, utenti e copertura dei listini.</span></button></div>
+  <div class="ddlg-text">
+    <span class="eyebrow">Vendite</span>
+    <h3 class="d-title">Analisi concorrenza</h3>
+    <p class="d-tag">I prezzi dei concorrenti in tasca alla forza vendita.</p>
+    <div class="case-text">
+          <div><h4>Il problema</h4><p>Gli agenti dovevano capire in pochi secondi se il prezzo proposto da un concorrente era davvero più basso e quanto margine restava per rispondere. Listini e sconti dei concorrenti erano sparsi in file diversi, difficili da consultare dal cliente.</p></div>
+          <div><h4>La soluzione</h4>
+            <ul class="feat">
+              <li>Ricerca di un articolo anche partendo dal codice di un concorrente, con il confronto immediato tra listino, sconto e prezzo netto</li>
+              <li>Segnalazione di un prezzo visto sul campo, con calcolo automatico di scostamento, sconto effettivo e margine</li>
+              <li>Una dashboard per il marketing con le segnalazioni, i prodotti in sovrapprezzo, la copertura dei listini e gli avvisi di aggiornamento</li>
+            </ul></div>
+          <div><h4>Il mio ruolo</h4><p>Analisi dei bisogni con le vendite, progettazione UI/UX, modello dati e formule, sviluppo in Glide e formazione degli utenti.</p></div>
+    </div>
+    <div class="d-tools"><h4>Strumenti</h4><div class="tags"><span class="chip plain">Glide</span><span class="chip plain">UI/UX</span><span class="chip plain">Data model</span></div></div>
+  </div>
+</template>
+<template id="d-case-projects-management">
+  <figure class="d-hero"><a href="img/projects-1-dashboard.jpg" target="_blank" rel="noopener" class="d-hero-link"><img class="d-hero-img" src="img/projects-1-dashboard.jpg" alt="Dashboard: grafici dei progetti per linea di prodotto e per settore, ultimi progetti e progetti per paese" width="1440" height="1371"></a><figcaption class="d-hero-cap">Dashboard: progetti per linea di prodotto, settore e paese.</figcaption></figure>
+  <div class="d-thumbs"><button type="button" class="d-thumb is-on" data-src="img/projects-1-dashboard.jpg" data-alt="Dashboard: grafici dei progetti per linea di prodotto e per settore, ultimi progetti e progetti per paese" data-cap="Dashboard: progetti per linea di prodotto, settore e paese."><img src="img/projects-1-dashboard.jpg" alt="" width="1440" height="1371" loading="lazy"><span class="sr">Mostra: Dashboard: progetti per linea di prodotto, settore e paese.</span></button><button type="button" class="d-thumb" data-src="img/projects-2-prodotti.jpg" data-alt="Catalogo delle linee di prodotto e tabella dei prodotti quotati nei progetti" data-cap="Linee di prodotto e prodotti quotati nei progetti."><img src="img/projects-2-prodotti.jpg" alt="" width="1440" height="901" loading="lazy"><span class="sr">Mostra: Linee di prodotto e prodotti quotati nei progetti.</span></button><button type="button" class="d-thumb" data-src="img/projects-3-dettaglio.jpg" data-alt="Scheda di un progetto con descrizione, informazioni e box dei dati riservati" data-cap="Scheda progetto, con i dati riservati visibili solo ai responsabili."><img src="img/projects-3-dettaglio.jpg" alt="" width="1440" height="898" loading="lazy"><span class="sr">Mostra: Scheda progetto, con i dati riservati visibili solo ai responsabili.</span></button></div>
+  <div class="ddlg-text">
+    <span class="eyebrow">Vendite internazionali</span>
+    <h3 class="d-title">Projects Management</h3>
+    <p class="d-tag">Tutti i progetti dei clienti, di tutte le filiali, in un unico posto.</p>
+    <div class="case-text">
+          <div><h4>Il problema</h4><p>Le filiali seguivano progetti con i clienti in paesi diversi, ognuna con i propri file. Mancava una visione d'insieme su quali prodotti venivano proposti, in quali settori e con quali opportunità, e le esperienze di una filiale non arrivavano alle altre.</p></div>
+          <div><h4>La soluzione</h4>
+            <ul class="feat">
+              <li>Una dashboard con i progetti per linea di prodotto, settore di applicazione e paese, con mappa e ultimi inserimenti</li>
+              <li>Una scheda per ogni progetto con descrizione, foto, prodotti quotati, concorrenti, vantaggi della nostra soluzione e commenti</li>
+              <li>Dati riservati (cliente, mercato potenziale) visibili solo ai responsabili di filiale e agli amministratori</li>
+              <li>Un catalogo delle linee di prodotto con l'elenco di tutti i prodotti quotati nei progetti</li>
+            </ul></div>
+          <div><h4>Il mio ruolo</h4><p>Progettazione della struttura dati e dei permessi per ruolo, UI/UX, sviluppo in Glide e messa in uso nelle filiali estere.</p></div>
+    </div>
+    <div class="d-tools"><h4>Strumenti</h4><div class="tags"><span class="chip plain">Glide</span><span class="chip plain">Mappe</span><span class="chip plain">Ruoli e permessi</span></div></div>
+  </div>
+</template>
+<template id="d-case-marketing-hub">
+  <figure class="d-hero"><a href="img/marketing-hub-2-proposte.jpg" target="_blank" rel="noopener" class="d-hero-link"><img class="d-hero-img" src="img/marketing-hub-2-proposte.jpg" alt="Proposte di contenuti da approvare, area AI per gli spunti e statistiche dei post per categoria" width="1440" height="938"></a><figcaption class="d-hero-cap">Proposte da approvare, spunti con l'AI e statistiche per categoria.</figcaption></figure>
+  <div class="d-thumbs"><button type="button" class="d-thumb is-on" data-src="img/marketing-hub-2-proposte.jpg" data-alt="Proposte di contenuti da approvare, area AI per gli spunti e statistiche dei post per categoria" data-cap="Proposte da approvare, spunti con l'AI e statistiche per categoria."><img src="img/marketing-hub-2-proposte.jpg" alt="" width="1440" height="938" loading="lazy"><span class="sr">Mostra: Proposte da approvare, spunti con l'AI e statistiche per categoria.</span></button><button type="button" class="d-thumb" data-src="img/marketing-hub-1-home.jpg" data-alt="Home del Marketing Hub con gli obiettivi e la rete di sedi" data-cap="La home: obiettivi del piano e rete delle sedi."><img src="img/marketing-hub-1-home.jpg" alt="" width="1440" height="812" loading="lazy"><span class="sr">Mostra: La home: obiettivi del piano e rete delle sedi.</span></button><button type="button" class="d-thumb" data-src="img/marketing-hub-3-post.jpg" data-alt="Scheda di un post con stato, data, testo e calendario del mese" data-cap="Scheda di un post con stato, data e calendario condiviso."><img src="img/marketing-hub-3-post.jpg" alt="" width="1440" height="762" loading="lazy"><span class="sr">Mostra: Scheda di un post con stato, data e calendario condiviso.</span></button></div>
+  <div class="ddlg-text">
+    <span class="eyebrow">Marketing</span>
+    <h3 class="d-title">Marketing Hub</h3>
+    <p class="d-tag">Un piano di comunicazione unico per la sede e tutte le filiali.</p>
+    <div class="case-text">
+          <div><h4>Il problema</h4><p>Sede e filiali pubblicavano su LinkedIn ognuna per conto proprio, con messaggi e tempi diversi. Le idee per nuovi contenuti si perdevano nelle email e mancava un calendario condiviso.</p></div>
+          <div><h4>La soluzione</h4>
+            <ul class="feat">
+              <li>Un hub dove ogni sede propone contenuti (prodotti, casi di studio, eventi) con testo, immagini e file</li>
+              <li>Un flusso di approvazione con stato, data di pubblicazione e calendario condiviso</li>
+              <li>Spunti per nuovi post con l'AI, a partire da un prompt guidato sullo stile dei post già pubblicati</li>
+              <li>Statistiche sui post pubblicati per categoria, per bilanciare il piano editoriale</li>
+            </ul></div>
+          <div><h4>Il mio ruolo</h4><p>Ideazione del processo editoriale, progettazione e sviluppo in Glide, integrazione dell'AI nel flusso di lavoro e coordinamento con le filiali.</p></div>
+    </div>
+    <div class="d-tools"><h4>Strumenti</h4><div class="tags"><span class="chip plain">Glide</span><span class="chip plain">AI</span><span class="chip plain">LinkedIn</span><span class="chip plain">Calendario</span></div></div>
+  </div>
+</template>
+<template id="d-exp-0">
+  <div class="ddlg-text">
+    <span class="eyebrow">Esperienza</span>
+    <div class="d-role"><time>12/2022 – oggi</time>          <h3>Web designer, Referente Marketing Italia e No-code developer</h3>
+          <div class="org">SIT S.p.A. · Milano</div>
+          <ul class="feat">
+            <li>Realizzate 5 Progressive Web App no-code per semplificare i processi aziendali interni</li>
+            <li>Progettazione UI/UX dell'e-commerce B2B, con circa 30.000 prodotti</li>
+            <li>Gestione del marketing digitale a livello globale per 10 filiali e analisi dati Italia con Power BI</li>
+            <li>Project management del benchmark di customer satisfaction</li>
+            <li>Introduzione dell'AI nella strategia aziendale e della realtà aumentata nel marketing</li>
+          </ul></div>
+  </div>
+</template>
+<template id="d-exp-1">
+  <div class="ddlg-text">
+    <span class="eyebrow">Esperienza</span>
+    <div class="d-role"><time>2026 – oggi</time>          <h3>Fondatore e sviluppatore</h3>
+          <div class="org">EnoList, Firmadocumenti, TweakBlock</div>
+          <p>Ideazione, sviluppo, lancio e gestione di prodotti digitali.</p></div>
+  </div>
+</template>
+<template id="d-exp-2">
+  <div class="ddlg-text">
+    <span class="eyebrow">Esperienza</span>
+    <div class="d-role"><time>07/2019 – oggi</time>          <h3>Co-fondatore e Project manager</h3>
+          <div class="org">Customeasy S.r.l.S. · web agency, Melegnano</div>
+          <p>Ho avviato da zero una piccola web agency: guida del team, ricerca di clienti e partner, campagne di marketing digitale, analisi dati e strategia.</p></div>
+  </div>
+</template>
+<template id="d-exp-3">
+  <div class="ddlg-text">
+    <span class="eyebrow">Esperienza</span>
+    <div class="d-role"><time>06/2018 – oggi</time>          <h3>Consulente IT</h3>
+          <div class="org">Freelance</div>
+          <p>Consulenza strategica alle aziende, integrazione di strumenti e tecnologie, sviluppo di siti web, campagne social, DEM, grafica e render 3D di prodotto.</p></div>
+  </div>
+</template>
+<template id="d-exp-4">
+  <div class="ddlg-text">
+    <span class="eyebrow">Esperienza</span>
+    <div class="d-role"><time>06/2016 – 07/2020</time>          <h3>Supporto tecnico e Web designer</h3>
+          <div class="org">Beginning S.r.l.</div>
+          <p>Web design, gestione delle attività di marketing e render fotorealistici.</p></div>
+    <div class="d-role"><time>06/2012 – 05/2016</time>          <h3>Progettista tecnico</h3>
+          <div class="org">I.T.I.D. S.r.l.</div>
+          <p>Progettazione di impianti industriali di climatizzazione (HVAC).</p></div>
+  </div>
+</template>
 </div>
 <script>
 (function () {
@@ -918,6 +1059,36 @@ html[data-style="bento"] .wrap { max-width: 1160px; }
     }
     var t = e.target.closest('[data-project]');
     if (t && open(t.getAttribute('data-project'))) e.preventDefault();
+  });
+})();
+
+(function () {
+  var dlg = document.getElementById('detail-dialog');
+  var body = document.getElementById('ddlg-body');
+  if (!dlg || typeof dlg.showModal !== 'function') return;
+  function open(k) {
+    var t = document.getElementById('d-' + k); if (!t) return false;
+    body.innerHTML = ''; body.appendChild(t.content.cloneNode(true));
+    dlg.showModal(); body.scrollTop = 0; dlg.scrollTop = 0;
+    return true;
+  }
+  document.addEventListener('click', function (e) {
+    var r = e.target.closest('.reveal');
+    if (r) r.classList.toggle('is-revealed');
+    if (e.target.closest('#detail-dialog')) {
+      var th = e.target.closest('.d-thumb');
+      if (th) {
+        var img = body.querySelector('.d-hero-img');
+        img.src = th.dataset.src; img.alt = th.dataset.alt;
+        body.querySelector('.d-hero-link').href = th.dataset.src;
+        body.querySelector('.d-hero-cap').textContent = th.dataset.cap;
+        body.querySelectorAll('.d-thumb').forEach(function (b) { b.classList.toggle('is-on', b === th); });
+      }
+      if (e.target === dlg || e.target.closest('[data-close]')) dlg.close();
+      return;
+    }
+    var d = e.target.closest('[data-detail]');
+    if (d && open(d.getAttribute('data-detail'))) e.preventDefault();
   });
 })();
 </script>
